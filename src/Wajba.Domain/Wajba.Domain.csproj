@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <RootNamespace>Wajba</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wajba.Domain.Shared\Wajba.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Volo.Abp.Emailing" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.OpenIddict.Domain" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.OpenIddict" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

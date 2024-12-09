@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Wajba</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wajba.Application.Contracts\Wajba.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="9.0.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>
