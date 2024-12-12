@@ -8,6 +8,7 @@ using Serilog.Events;
 
 namespace Wajba;
 
+
 public class Program
 {
     public async static Task<int> Main(string[] args)
