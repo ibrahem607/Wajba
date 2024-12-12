@@ -13,12 +13,16 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Wajba.BranchDomain;
 using Wajba.CategoriesDomain;
+using Wajba.CurrenciesDomain;
 using Wajba.ItemAddonDomain;
 using Wajba.ItemAttributeDomain;
 using Wajba.ItemExtraDomain;
 using Wajba.Items;
+using Wajba.ItemTaxDomain;
 using Wajba.ItemVariationDomain;
+using Wajba.LanguageDomain;
 using Wajba.OfferDomain;
 
 namespace Wajba.EntityFrameworkCore;
@@ -70,6 +74,11 @@ public class WajbaDbContext :
     public DbSet<OfferItem> OfferItems { get; set; }
     public DbSet<OfferCategory> OfferCategories { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Language> Languages { get; set; }
+    public DbSet<Currencies> Currencies { get; set; }
+    public DbSet<ItemTax> ItemTaxes { get; set; }
+    public DbSet<ItemBranch> itemBranches { get; set; }
+    public DbSet<Branch> Branches { get; set; }
     #endregion
     public WajbaDbContext(DbContextOptions<WajbaDbContext> options)
         : base(options)

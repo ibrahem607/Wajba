@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities.Auditing;
+using Wajba.BranchDomain;
 using Wajba.Enums;
 
 namespace Wajba.OfferDomain
@@ -23,7 +24,7 @@ namespace Wajba.OfferDomain
         public int BranchId { get; set; }
 
         // Navigation property to Restaurant
-      //  public virtual Branch Branch { get; set; }
+        public virtual Branch Branch { get; set; }
 
         // Many-to-many relationship with Item
         public virtual ICollection<OfferItem>? OfferItems { get; set; }
