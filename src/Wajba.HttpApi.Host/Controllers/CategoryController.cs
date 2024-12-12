@@ -30,7 +30,7 @@ namespace Wajba.Controllers
                 {
                     Success = true,
                     Message = "Category created successfully.",
-                    Data = null // No data needed for a successful create (or you could return the created category if preferred)
+                    Data = null 
                 });
             }
             catch (Exception ex)
