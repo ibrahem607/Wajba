@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Volo.Abp.Application.Services;
 using Wajba.Localization;
-using Volo.Abp.Application.Services;
 
 namespace Wajba;
 

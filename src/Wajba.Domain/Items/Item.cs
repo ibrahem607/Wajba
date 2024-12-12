@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using Volo.Abp.Domain.Entities.Auditing;
-using Wajba.CategoriesDomain;
-using Wajba.Enums;
-using Wajba.ItemAddonDomain;
-using Wajba.ItemExtraDomain;
-using Wajba.ItemVariationDomain;
-using Wajba.OfferDomain;
+﻿global using System.Collections.Generic;
+global using Wajba.CategoriesDomain;
+global using Wajba.ItemAddonDomain;
+global using Wajba.ItemExtraDomain;
+global using Wajba.ItemVariationDomain;
+global using Wajba.OfferDomain;
 
 namespace Wajba.Items
 {

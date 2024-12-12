@@ -2873,11 +2873,13 @@ namespace Wajba.Migrations
 
             modelBuilder.Entity("Wajba.OfferDomain.Offer", b =>
                 {
-                    b.HasOne("Wajba.BranchDomain.Branch", null)
+                    b.HasOne("Wajba.BranchDomain.Branch", "Branch")
                         .WithMany("Offers")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Branch");
                 });
 
             modelBuilder.Entity("Wajba.OfferDomain.OfferCategory", b =>

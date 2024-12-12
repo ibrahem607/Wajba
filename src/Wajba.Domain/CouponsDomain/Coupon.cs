@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities.Auditing;
-using Wajba.BranchDomain;
-using Wajba.Enums;
+﻿global using System;
+global using Wajba.BranchDomain;
+global using Wajba.Enums;
 
 namespace Wajba.CouponsDomain
 {

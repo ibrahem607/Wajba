@@ -1,6 +1,6 @@
-﻿using Wajba.EntityFrameworkCore;
-using Volo.Abp.Autofac;
+﻿using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
+using Wajba.EntityFrameworkCore;
 
 namespace Wajba.DbMigrator;
 
