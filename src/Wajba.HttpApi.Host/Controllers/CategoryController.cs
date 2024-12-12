@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
-using Wajba.APIResponse;
-using Wajba.Categories;
+﻿global using Microsoft.AspNetCore.Mvc;
+global using Volo.Abp.Application.Dtos;
+global using Volo.Abp.Domain.Entities;
+global using Wajba.APIResponse;
+global using Wajba.Categories;
 
 namespace Wajba.Controllers
 {

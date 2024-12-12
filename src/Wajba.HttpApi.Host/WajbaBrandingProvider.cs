@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Localization;
-using Wajba.Localization;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Ui.Branding;
+﻿global using Microsoft.Extensions.Localization;
+global using Wajba.Localization;
+global using Volo.Abp.DependencyInjection;
+global using Volo.Abp.Ui.Branding;
 
 namespace Wajba;
 

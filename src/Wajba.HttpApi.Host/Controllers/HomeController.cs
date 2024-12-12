@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc;
+﻿global using Volo.Abp.AspNetCore.Mvc;
 
 namespace Wajba.Controllers;
 
