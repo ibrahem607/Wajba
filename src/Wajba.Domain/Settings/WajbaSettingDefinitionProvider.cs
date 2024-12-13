@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Settings;
+﻿global using Volo.Abp.Settings;
 
 namespace Wajba.Settings;
 

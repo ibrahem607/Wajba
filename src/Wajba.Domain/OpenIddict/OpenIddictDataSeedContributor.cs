@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Localization;
-using OpenIddict.Abstractions;
-using Volo.Abp;
-using Volo.Abp.Authorization.Permissions;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.OpenIddict.Applications;
-using Volo.Abp.OpenIddict.Scopes;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.Uow;
+﻿global using JetBrains.Annotations;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Localization;
+global using OpenIddict.Abstractions;
+global using System.Text.Json;
+global using Volo.Abp;
+global using Volo.Abp.Authorization.Permissions;
+global using Volo.Abp.OpenIddict.Applications;
+global using Volo.Abp.OpenIddict.Scopes;
+global using Volo.Abp.PermissionManagement;
+global using Volo.Abp.Uow;
 
 namespace Wajba.OpenIddict;
 

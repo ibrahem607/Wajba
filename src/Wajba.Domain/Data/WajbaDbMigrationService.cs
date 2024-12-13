@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Identity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.TenantManagement;
+﻿global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Logging.Abstractions;
+global using System.Diagnostics;
+global using System.IO;
+global using System.Linq;
+global using System.Runtime.InteropServices;
+global using Volo.Abp.Data;
+global using Volo.Abp.MultiTenancy;
+global using Volo.Abp.TenantManagement;
 
 namespace Wajba.Data;
 

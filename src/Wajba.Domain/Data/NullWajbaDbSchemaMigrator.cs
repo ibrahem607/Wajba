@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Volo.Abp.DependencyInjection;
+﻿global using Volo.Abp.DependencyInjection;
 
 namespace Wajba.Data;
 

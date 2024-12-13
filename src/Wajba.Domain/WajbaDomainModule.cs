@@ -1,19 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Volo.Abp.AuditLogging;
-using Volo.Abp.BackgroundJobs;
-using Volo.Abp.Emailing;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
-using Volo.Abp.Localization;
-using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.OpenIddict;
-using Volo.Abp.PermissionManagement.Identity;
-using Volo.Abp.PermissionManagement.OpenIddict;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.TenantManagement;
-using Wajba.MultiTenancy;
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Volo.Abp.AuditLogging;
+global using Volo.Abp.BackgroundJobs;
+global using Volo.Abp.Emailing;
+global using Volo.Abp.FeatureManagement;
+global using Volo.Abp.Localization;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.OpenIddict;
+global using Volo.Abp.PermissionManagement.Identity;
+global using Volo.Abp.PermissionManagement.OpenIddict;
+global using Volo.Abp.SettingManagement;
+global using Wajba.MultiTenancy;
 
 
 namespace Wajba;
