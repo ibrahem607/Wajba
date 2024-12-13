@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.AspNetCore.Mvc;
-using Wajba.BranchContract;
+﻿using Wajba.BranchContract;
 
 namespace Wajba.Controllers
 {
