@@ -1,4 +1,5 @@
 ﻿global using Wajba.ItemTaxContract;
+using Wajba.Dtos.ItemTaxContract;
 
 namespace Wajba.Controllers;
 

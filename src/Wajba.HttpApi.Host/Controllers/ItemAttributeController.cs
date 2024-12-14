@@ -1,4 +1,5 @@
 ﻿global using Wajba.ItemAttributes;
+using Wajba.Dtos.ItemAttributes;
 
 namespace Wajba.Controllers
 {

@@ -1,77 +1,66 @@
-﻿using AutoMapper.Internal.Mappers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.Models.LanguageDomain;
-using Wajba.Services.ImageService;
+﻿global using Wajba.Models.LanguageDomain;
+using Wajba.Dtos.Languages;
 
-namespace Wajba.Languages
+namespace Wajba.Languages;
+
+[RemoteService(false)]
+public class LanguageAppService : ApplicationService
 {
-    [RemoteService(false)]
-    public class LanguageAppService : ApplicationService
+    private readonly IRepository<Language, int> _languageRepository;
+    private readonly IImageService _imageUploadService; // Assume this handles image uploads
+
+    public LanguageAppService(IRepository<Language, int> languageRepository, IImageService imageUploadService)
     {
-        private readonly IRepository<Language, int> _languageRepository;
-        private readonly IImageService _imageUploadService; // Assume this handles image uploads
+        _languageRepository = languageRepository;
+        _imageUploadService = imageUploadService;
+    }
 
-        public LanguageAppService(IRepository<Language, int> languageRepository, IImageService imageUploadService)
+    public async Task<PagedResultDto<LanguageDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+    {
+        var query = await _languageRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, input.Sorting);
+        var totalCount = await _languageRepository.GetCountAsync();
+
+        return new PagedResultDto<LanguageDto>(
+            totalCount,
+            ObjectMapper.Map<List<Language>, List<LanguageDto>>(query)
+        );
+    }
+
+    public async Task<LanguageDto> GetAsync(int id)
+    {
+        var language = await _languageRepository.GetAsync(id);
+        return ObjectMapper.Map<Language, LanguageDto>(language);
+    }
+
+    public async Task<LanguageDto> CreateAsync(CreateUpdateLanguageDto input)
+    {
+        string imageUrl = await _imageUploadService.UploadAsync(input.Image); // Upload image
+
+        var language = ObjectMapper.Map<CreateUpdateLanguageDto, Language>(input);
+        language.ImageUrl = imageUrl;
+
+        await _languageRepository.InsertAsync(language);
+        return ObjectMapper.Map<Language, LanguageDto>(language);
+    }
+
+    public async Task<LanguageDto> UpdateAsync(int id, CreateUpdateLanguageDto input)
+    {
+        var language = await _languageRepository.GetAsync(id);
+
+        if (input.Image != null)
         {
-            _languageRepository = languageRepository;
-            _imageUploadService = imageUploadService;
-        }
-
-        public async Task<PagedResultDto<LanguageDto>> GetListAsync(PagedAndSortedResultRequestDto input)
-        {
-            var query = await _languageRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, input.Sorting);
-            var totalCount = await _languageRepository.GetCountAsync();
-
-            return new PagedResultDto<LanguageDto>(
-                totalCount,
-                ObjectMapper.Map<List<Language>, List<LanguageDto>>(query)
-            );
-        }
-
-        public async Task<LanguageDto> GetAsync(int id)
-        {
-            var language = await _languageRepository.GetAsync(id);
-            return ObjectMapper.Map<Language, LanguageDto>(language);
-        }
-
-        public async Task<LanguageDto> CreateAsync(CreateUpdateLanguageDto input)
-        {
-            string imageUrl = await _imageUploadService.UploadAsync(input.Image); // Upload image
-
-            var language = ObjectMapper.Map<CreateUpdateLanguageDto, Language>(input);
+            string imageUrl = await _imageUploadService.UploadAsync(input.Image);
             language.ImageUrl = imageUrl;
-
-            await _languageRepository.InsertAsync(language);
-            return ObjectMapper.Map<Language, LanguageDto>(language);
         }
 
-        public async Task<LanguageDto> UpdateAsync(int id, CreateUpdateLanguageDto input)
-        {
-            var language = await _languageRepository.GetAsync(id);
+        ObjectMapper.Map(input, language); // Map other properties
 
-            if (input.Image != null)
-            {
-                string imageUrl = await _imageUploadService.UploadAsync(input.Image);
-                language.ImageUrl = imageUrl;
-            }
+        await _languageRepository.UpdateAsync(language);
+        return ObjectMapper.Map<Language, LanguageDto>(language);
+    }
 
-            ObjectMapper.Map(input, language); // Map other properties
-
-            await _languageRepository.UpdateAsync(language);
-            return ObjectMapper.Map<Language, LanguageDto>(language);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _languageRepository.DeleteAsync(id);
-        }
+    public async Task DeleteAsync(int id)
+    {
+        await _languageRepository.DeleteAsync(id);
     }
 }

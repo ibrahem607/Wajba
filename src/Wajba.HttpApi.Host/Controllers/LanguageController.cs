@@ -1,4 +1,5 @@
 ﻿global using Wajba.Languages;
+using Wajba.Dtos.Languages;
 
 namespace Wajba.Controllers
 {

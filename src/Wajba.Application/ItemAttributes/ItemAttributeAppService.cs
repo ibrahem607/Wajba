@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.Models.ItemAttributeDomain;
+﻿global using Wajba.Models.ItemAttributeDomain;
+using Wajba.Dtos.ItemAttributes;
 
 namespace Wajba.ItemAttributes
 {

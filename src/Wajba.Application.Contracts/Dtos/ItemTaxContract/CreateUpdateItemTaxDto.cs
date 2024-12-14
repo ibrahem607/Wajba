@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wajba.Enums;
-
-namespace Wajba.ItemTaxContract
+﻿namespace Wajba.Dtos.ItemTaxContract
 {
     public class CreateUpdateItemTaxDto
     {

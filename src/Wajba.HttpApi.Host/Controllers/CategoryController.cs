@@ -3,10 +3,11 @@ global using Volo.Abp.Application.Dtos;
 global using Volo.Abp.Domain.Entities;
 global using Wajba.APIResponse;
 global using Wajba.Categories;
+using Wajba.Dtos.Categories;
 
 namespace Wajba.Controllers;
-  
-    [IgnoreAntiforgeryToken]
+
+[IgnoreAntiforgeryToken]
     public class CategoryController : WajbaController
     {
         private readonly CategoryAppService _categoryAppService;

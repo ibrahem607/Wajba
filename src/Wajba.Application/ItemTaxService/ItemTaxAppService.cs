@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.ItemTaxContract;
-using Wajba.Models.ItemTaxDomain;
+﻿global using Wajba.ItemTaxContract;
+global using Wajba.Models.ItemTaxDomain;
+using Wajba.Dtos.ItemTaxContract;
 
 namespace Wajba.ItemTaxService
 {

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Wajba.CouponContract;
 using Wajba.CouponService;
+using Wajba.Dtos.CouponContract;
 
 namespace Wajba.Controllers
 {

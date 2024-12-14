@@ -1,21 +1,15 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wajba.Categories;
-using Wajba.Models.CategoriesDomain;
+﻿global using AutoMapper;
+global using Wajba.Categories;
+using Wajba.Dtos.Categories;
 
-namespace Wajba.Mappings
+namespace Wajba.Mappings;
+
+public class CategoryMappingProfile:Profile
 {
-    public class CategoryMappingProfile:Profile
+    public CategoryMappingProfile()
     {
-        public CategoryMappingProfile()
-        {
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CreateUpdateCategoryDto, Category>().ForMember(c => c.ImageUrl, opt => opt.Ignore());
-        }
-       
+        CreateMap<Category, CategoryDto>();
+        CreateMap<CreateUpdateCategoryDto, Category>().ForMember(c => c.ImageUrl, opt => opt.Ignore());
     }
+   
 }

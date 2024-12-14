@@ -1,16 +1,6 @@
-﻿using AutoMapper.Internal.Mappers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.CouponContract;
-using Wajba.Models.CouponsDomain;
-using Wajba.Services.ImageService;
+﻿global using Wajba.CouponContract;
+global using Wajba.Models.CouponsDomain;
+using Wajba.Dtos.CouponContract;
 
 namespace Wajba.CouponService
 {

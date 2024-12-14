@@ -1,108 +1,103 @@
-﻿using AutoMapper.Internal.Mappers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Volo.Abp.ObjectMapping;
-using Wajba.Services.ImageService;
-using System.Linq.Dynamic.Core;
-using Volo.Abp;
-using Wajba.Models.CategoriesDomain;
+﻿global using System.Collections.Generic;
+global using System.Linq;
+global using System.Linq.Dynamic.Core;
+global using System.Threading.Tasks;
+global using Volo.Abp;
+global using Volo.Abp.Application.Dtos;
+global using Volo.Abp.Application.Services;
+global using Volo.Abp.Domain.Repositories;
+global using Wajba.Models.CategoriesDomain;
+global using Wajba.Services.ImageService;
+using Wajba.Dtos.Categories;
 
-namespace Wajba.Categories
+namespace Wajba.Categories;
+
+[RemoteService(false)]
+public class CategoryAppService:ApplicationService
 {
-    [RemoteService(false)]
-    public class CategoryAppService:ApplicationService
+    private readonly IRepository<Category, int> _categoryRepository;
+    private readonly IImageService _imageService;
+
+    public CategoryAppService(IRepository<Category, int> categoryRepository, IImageService imageService)
     {
-        private readonly IRepository<Category, int> _categoryRepository;
-        private readonly IImageService _imageService;
+        _categoryRepository = categoryRepository;
+        _imageService = imageService;
+    }
 
-        public CategoryAppService(IRepository<Category, int> categoryRepository, IImageService imageService)
+    public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto input)
+    {
+        string? imageUrl = null;
+
+        if (input.Image != null)
         {
-            _categoryRepository = categoryRepository;
-            _imageService = imageService;
+            imageUrl = await _imageService.UploadAsync(input.Image);
         }
 
-        public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto input)
+        var category = new Category
         {
-            string? imageUrl = null;
+            Name = input.name,
+            Description = input.Description,
+            ImageUrl = imageUrl,
+            Status = input.status
+        };
 
-            if (input.Image != null)
-            {
-                imageUrl = await _imageService.UploadAsync(input.Image);
-            }
+        var insertedCategory = await _categoryRepository.InsertAsync(category);
+        return ObjectMapper.Map<Category, CategoryDto>(insertedCategory);
 
-            var category = new Category
-            {
-                Name = input.name,
-                Description = input.Description,
-                ImageUrl = imageUrl,
-                Status = input.status
-            };
+    }
 
-            var insertedCategory = await _categoryRepository.InsertAsync(category);
-            return ObjectMapper.Map<Category, CategoryDto>(insertedCategory);
+    public async Task<CategoryDto> UpdateAsync(int id, CreateUpdateCategoryDto input)
+    {
+        var category = await _categoryRepository.GetAsync(id);
 
+        if (input.Image != null)
+        {
+            category.ImageUrl = await _imageService.UploadAsync(input.Image);
         }
 
-        public async Task<CategoryDto> UpdateAsync(int id, CreateUpdateCategoryDto input)
-        {
-            var category = await _categoryRepository.GetAsync(id);
+        category.Name = input.name;
+        category.Description = input.Description;
+        category.Status = input.status;
 
-            if (input.Image != null)
-            {
-                category.ImageUrl = await _imageService.UploadAsync(input.Image);
-            }
+        var updatedcategory=await _categoryRepository.UpdateAsync(category);
 
-            category.Name = input.name;
-            category.Description = input.Description;
-            category.Status = input.status;
+        return ObjectMapper.Map<Category, CategoryDto>(updatedcategory);
+    }
 
-            var updatedcategory=await _categoryRepository.UpdateAsync(category);
+    public async Task<CategoryDto> GetByIdAsync(int id)
+    {
+        var category = await _categoryRepository.GetAsync(id);
+        return ObjectMapper.Map<Category, CategoryDto>(category);
+    }
 
-            return ObjectMapper.Map<Category, CategoryDto>(updatedcategory);
-        }
+    public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryInput input)
+    {
+        // Get IQueryable from the repository
+        var queryable = await _categoryRepository.GetQueryableAsync();
 
-        public async Task<CategoryDto> GetByIdAsync(int id)
-        {
-            var category = await _categoryRepository.GetAsync(id);
-            return ObjectMapper.Map<Category, CategoryDto>(category);
-        }
+        // Apply conditional filtering using WhereIf
+        queryable = queryable.WhereIf(
+            !string.IsNullOrWhiteSpace(input.Filter),
+            c => c.Name.Contains(input.Filter) || c.Description.Contains(input.Filter)
+        );
 
-        public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryInput input)
-        {
-            // Get IQueryable from the repository
-            var queryable = await _categoryRepository.GetQueryableAsync();
+        // Count the total items
+        var totalCount = await AsyncExecuter.CountAsync(queryable);
 
-            // Apply conditional filtering using WhereIf
-            queryable = queryable.WhereIf(
-                !string.IsNullOrWhiteSpace(input.Filter),
-                c => c.Name.Contains(input.Filter) || c.Description.Contains(input.Filter)
-            );
+        // Apply sorting, paging, and execute the query
+        var items = await AsyncExecuter.ToListAsync(queryable
+            .OrderBy(input.Sorting ?? nameof(Category.Name))
+            .PageBy(input.SkipCount, input.MaxResultCount));
 
-            // Count the total items
-            var totalCount = await AsyncExecuter.CountAsync(queryable);
+        // Map and return the result
+        return new PagedResultDto<CategoryDto>(
+            totalCount,
+            ObjectMapper.Map<List<Category>, List<CategoryDto>>(items)
+        );
+    }
 
-            // Apply sorting, paging, and execute the query
-            var items = await AsyncExecuter.ToListAsync(queryable
-                .OrderBy(input.Sorting ?? nameof(Category.Name))
-                .PageBy(input.SkipCount, input.MaxResultCount));
-
-            // Map and return the result
-            return new PagedResultDto<CategoryDto>(
-                totalCount,
-                ObjectMapper.Map<List<Category>, List<CategoryDto>>(items)
-            );
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _categoryRepository.DeleteAsync(id);
-        }
+    public async Task DeleteAsync(int id)
+    {
+        await _categoryRepository.DeleteAsync(id);
     }
 }

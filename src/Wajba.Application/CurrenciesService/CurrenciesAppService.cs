@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.CurrenciesContract;
-using Wajba.Models.CurrenciesDomain;
-
-
+﻿global using Wajba.CurrenciesContract;
+global using Wajba.Models.CurrenciesDomain;
+using Wajba.Dtos.CurrenciesContract;
 
 namespace Wajba.CurrenciesService
 {
