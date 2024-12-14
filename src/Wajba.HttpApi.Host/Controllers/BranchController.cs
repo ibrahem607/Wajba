@@ -1,46 +1,43 @@
 ﻿using Wajba.BranchContract;
 
-namespace Wajba.Controllers
+namespace Wajba.Controllers;
+
+public class BranchController : BaseApiController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BranchController : AbpController
+    private readonly IBranchAppService _branchAppService;
+
+    public BranchController(IBranchAppService branchAppService)
     {
-        private readonly IBranchAppService _branchAppService;
+        _branchAppService = branchAppService;
+    }
 
-        public BranchController(IBranchAppService branchAppService)
-        {
-            _branchAppService = branchAppService;
-        }
+    [HttpGet("{id}")]
+    public async Task<BranchDto> GetAsync(int id)
+    {
+        return await _branchAppService.GetAsync(id);
+    }
 
-        [HttpGet("{id}")]
-        public async Task<BranchDto> GetAsync(int id)
-        {
-            return await _branchAppService.GetAsync(id);
-        }
+    [HttpGet]
+    public async Task<PagedResultDto<BranchDto>> GetListAsync([FromQuery] PagedAndSortedResultRequestDto input)
+    {
+        return await _branchAppService.GetListAsync(input);
+    }
 
-        [HttpGet]
-        public async Task<PagedResultDto<BranchDto>> GetListAsync([FromQuery] PagedAndSortedResultRequestDto input)
-        {
-            return await _branchAppService.GetListAsync(input);
-        }
+    [HttpPost]
+    public async Task<BranchDto> CreateAsync(CreateUpdateBranchDto input)
+    {
+        return await _branchAppService.CreateAsync(input);
+    }
 
-        [HttpPost]
-        public async Task<BranchDto> CreateAsync(CreateUpdateBranchDto input)
-        {
-            return await _branchAppService.CreateAsync(input);
-        }
+    [HttpPut("{id}")]
+    public async Task<BranchDto> UpdateAsync(int id, CreateUpdateBranchDto input)
+    {
+        return await _branchAppService.UpdateAsync(id, input);
+    }
 
-        [HttpPut("{id}")]
-        public async Task<BranchDto> UpdateAsync(int id, CreateUpdateBranchDto input)
-        {
-            return await _branchAppService.UpdateAsync(id, input);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task DeleteAsync(int id)
-        {
-            await _branchAppService.DeleteAsync(id);
-        }
+    [HttpDelete("{id}")]
+    public async Task DeleteAsync(int id)
+    {
+        await _branchAppService.DeleteAsync(id);
     }
 }
