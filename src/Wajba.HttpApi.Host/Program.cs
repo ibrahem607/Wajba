@@ -1,12 +1,10 @@
-﻿global using System;
-global using System.Threading.Tasks;
-global using Microsoft.AspNetCore.Builder;
+﻿global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Serilog;
 global using Serilog.Events;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
+global using System;
+global using System.Threading.Tasks;
 
 namespace Wajba;
 public class Program
@@ -34,23 +32,7 @@ public class Program
                 .UseAutofac()
                 .UseSerilog();
             await builder.AddApplicationAsync<WajbaHttpApiHostModule>();
-            builder.Services.AddAuthentication()
-            .AddJwtBearer(options =>
-                {
-                    options.SaveToken = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                        ValidAudience = builder.Configuration["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-                    };
-                });
-            builder.Services.AddAuthorization();
-                    var app = builder.Build();
+            var app = builder.Build();
             await app.InitializeApplicationAsync();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -71,6 +53,5 @@ public class Program
         {
             Log.CloseAndFlush();
         }
-     
     }
 }

@@ -6,4 +6,5 @@ public class ItemTax : FullAuditedEntity<int>
     public decimal Code { get; set; }
     public int TaxRate { get; set; }
     public Status Status { get; set; }
+
 }

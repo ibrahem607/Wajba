@@ -4,4 +4,8 @@ namespace Wajba.DeliveryBoysDomain;
 
 public class AppUser:IdentityUser
 {
+    public AppUser()
+    {
+        
+    }
 }
