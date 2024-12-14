@@ -4,8 +4,6 @@ global using Microsoft.AspNetCore.Mvc;
 
 namespace Wajba.Controllers;
 
-/* Inherit your controllers from this class.
- */
 [Route("api/[controller]")]
 [ApiController]
 public abstract class WajbaController : AbpControllerBase
