@@ -1,6 +1,5 @@
-﻿global using Wajba.BranchContract;
-global using Wajba.Models.BranchDomain;
-using Wajba.Dtos.BranchContract;
+﻿global using Wajba.Models.BranchDomain;
+global using Wajba.Dtos.BranchContract;
 
 namespace Wajba.BranchService
 {

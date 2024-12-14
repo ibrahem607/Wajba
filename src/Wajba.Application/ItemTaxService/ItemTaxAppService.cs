@@ -1,6 +1,5 @@
-﻿global using Wajba.ItemTaxContract;
-global using Wajba.Models.ItemTaxDomain;
-using Wajba.Dtos.ItemTaxContract;
+﻿global using Wajba.Models.ItemTaxDomain;
+global using Wajba.Dtos.ItemTaxContract;
 
 namespace Wajba.ItemTaxService
 {

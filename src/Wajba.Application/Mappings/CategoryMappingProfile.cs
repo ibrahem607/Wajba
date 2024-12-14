@@ -1,6 +1,4 @@
 ﻿global using AutoMapper;
-global using Wajba.Categories;
-using Wajba.Dtos.Categories;
 
 namespace Wajba.Mappings;
 

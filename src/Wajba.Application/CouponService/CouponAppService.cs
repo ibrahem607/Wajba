@@ -1,6 +1,5 @@
-﻿global using Wajba.CouponContract;
-global using Wajba.Models.CouponsDomain;
-using Wajba.Dtos.CouponContract;
+﻿global using Wajba.Models.CouponsDomain;
+global using Wajba.Dtos.CouponContract;
 
 namespace Wajba.CouponService
 {
