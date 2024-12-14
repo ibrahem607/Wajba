@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.EntityFrameworkCore.Modeling;
-using Wajba.ItemTaxDomain;
+using Wajba.Models.ItemTaxDomain;
 
 namespace Wajba.Configurations
 {

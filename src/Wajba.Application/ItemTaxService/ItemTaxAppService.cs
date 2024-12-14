@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Wajba.ItemTaxContract;
-using Wajba.ItemTaxDomain;
+using Wajba.Models.ItemTaxDomain;
 
 namespace Wajba.ItemTaxService
 {

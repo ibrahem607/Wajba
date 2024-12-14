@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.EntityFrameworkCore.Modeling;
-using Wajba.ItemExtraDomain;
+using Wajba.Models.ItemExtraDomain;
 
 namespace Wajba.Configurations
 {

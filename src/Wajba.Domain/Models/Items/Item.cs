@@ -1,11 +1,9 @@
 ﻿global using System.Collections.Generic;
-global using Wajba.CategoriesDomain;
-global using Wajba.ItemAddonDomain;
-global using Wajba.ItemExtraDomain;
-global using Wajba.ItemVariationDomain;
-global using Wajba.OfferDomain;
+global using Wajba.Models.CategoriesDomain;
+global using Wajba.Models.ItemAddonDomain;
+global using Wajba.Models.ItemExtraDomain;
 
-namespace Wajba.Items;
+namespace Wajba.Models.Items;
 
 public class Item : FullAuditedEntity<int>
 {
@@ -21,7 +19,7 @@ public class Item : FullAuditedEntity<int>
 
     // Foreign key to Category
     public int CategoryId { get; set; }
-    public virtual Category? Category { get; set; }
+    public virtual Category Category { get; set; }
     // Navigation properties
     //public virtual ICollection<ItemBranch> ItemBranches { get; set; } = new List<ItemBranch>();
     public virtual ICollection<ItemAddon> ItemAddons { get; set; } = new List<ItemAddon>();

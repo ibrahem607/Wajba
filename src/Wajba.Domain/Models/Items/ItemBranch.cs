@@ -1,8 +1,8 @@
 ﻿global using Volo.Abp.Domain.Entities;
 
-namespace Wajba.Items;
+namespace Wajba.Models.Items;
 
-public class ItemBranch:Entity<int>
+public class ItemBranch : Entity<int>
 {
     public int ItemId { get; set; }
     public Item Item { get; set; }

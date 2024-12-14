@@ -1,4 +1,4 @@
-﻿global using Wajba.CouponsDomain;
+﻿global using Wajba.Models.CouponsDomain;
 
 namespace Wajba.Configurations
 {

@@ -1,9 +1,9 @@
-﻿namespace Wajba.CategoriesDomain;
+﻿namespace Wajba.Models.CategoriesDomain;
 
 public class Category : FullAuditedEntity<int>
 {
     public string Name { get; set; }
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; set; }
     public string Description { get; set; }
     public Status Status { get; set; }
 

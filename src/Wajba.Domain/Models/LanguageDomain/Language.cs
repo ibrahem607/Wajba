@@ -1,6 +1,6 @@
 ﻿global using Volo.Abp.Domain.Entities.Auditing;
 
-namespace Wajba.LanguageDomain;
+namespace Wajba.Models.LanguageDomain;
 
 public class Language : FullAuditedEntity<int>
 {

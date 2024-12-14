@@ -1,6 +1,6 @@
-﻿global using Wajba.ItemAttributeDomain;
+﻿global using Wajba.Models.ItemAttributeDomain;
 
-namespace Wajba.ItemVariationDomain;
+namespace Wajba.Models.ItemVariationDomain;
 
 public class ItemVariation : FullAuditedEntity<int>
 {
@@ -11,9 +11,9 @@ public class ItemVariation : FullAuditedEntity<int>
 
     // Foreign key to ItemAttributes
     public int ItemAttributesId { get; set; }
-    public ItemAttribute? ItemAttributes { get; set; }
+    public ItemAttribute ItemAttributes { get; set; }
 
     // Foreign key to Item
     public int ItemId { get; set; }
-    public virtual Item? Item { get; set; }
+    public virtual Item Item { get; set; }
 }

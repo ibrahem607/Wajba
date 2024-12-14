@@ -9,7 +9,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Wajba.CouponContract;
-using Wajba.CouponsDomain;
+using Wajba.Models.CouponsDomain;
 using Wajba.Services.ImageService;
 
 namespace Wajba.CouponService

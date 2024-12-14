@@ -1,4 +1,6 @@
-﻿namespace Wajba.ItemAttributeDomain;
+﻿global using Wajba.Models.ItemVariationDomain;
+
+namespace Wajba.Models.ItemAttributeDomain;
 
 public class ItemAttribute : FullAuditedEntity<int>
 {

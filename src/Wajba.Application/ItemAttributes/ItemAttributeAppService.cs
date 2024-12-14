@@ -7,7 +7,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Wajba.ItemAttributeDomain;
+using Wajba.Models.ItemAttributeDomain;
 
 namespace Wajba.ItemAttributes
 {

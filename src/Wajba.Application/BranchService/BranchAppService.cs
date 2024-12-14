@@ -3,7 +3,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Wajba.BranchContract;
-using Wajba.BranchDomain;
+using Wajba.Models.BranchDomain;
 
 namespace Wajba.BranchService
 {

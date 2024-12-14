@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wajba.Categories;
-using Wajba.CategoriesDomain;
+using Wajba.Models.CategoriesDomain;
 
 namespace Wajba.Mappings
 {

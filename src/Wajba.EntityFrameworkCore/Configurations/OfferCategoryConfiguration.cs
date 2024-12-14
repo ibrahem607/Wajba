@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Volo.Abp.EntityFrameworkCore.Modeling;
-using Wajba.OfferDomain;
+using Wajba.Models.OfferDomain;
 
 namespace Wajba.Configurations
 {

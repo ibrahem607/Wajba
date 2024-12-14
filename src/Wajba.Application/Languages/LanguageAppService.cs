@@ -8,7 +8,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Wajba.LanguageDomain;
+using Wajba.Models.LanguageDomain;
 using Wajba.Services.ImageService;
 
 namespace Wajba.Languages

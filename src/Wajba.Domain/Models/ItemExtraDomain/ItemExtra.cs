@@ -1,4 +1,4 @@
-﻿namespace Wajba.ItemExtraDomain;
+﻿namespace Wajba.Models.ItemExtraDomain;
 
 public class ItemExtra : FullAuditedEntity<int>
 {
@@ -8,5 +8,5 @@ public class ItemExtra : FullAuditedEntity<int>
 
     // Foreign key to Item
     public int ItemId { get; set; }
-    public virtual Item? Item { get; set; }
+    public virtual Item Item { get; set; }
 }

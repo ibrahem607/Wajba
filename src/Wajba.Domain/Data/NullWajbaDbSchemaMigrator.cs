@@ -2,9 +2,6 @@
 
 namespace Wajba.Data;
 
-/* This is used if database provider does't define
- * IWajbaDbSchemaMigrator implementation.
- */
 public class NullWajbaDbSchemaMigrator : IWajbaDbSchemaMigrator, ITransientDependency
 {
     public Task MigrateAsync()

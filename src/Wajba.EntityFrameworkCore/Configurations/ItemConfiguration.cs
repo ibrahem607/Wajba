@@ -1,4 +1,4 @@
-﻿global using Wajba.Items;
+﻿global using Wajba.Models.Items;
 
 namespace Wajba.Configurations
 {

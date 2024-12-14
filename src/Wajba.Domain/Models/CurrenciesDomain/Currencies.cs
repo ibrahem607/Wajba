@@ -1,4 +1,4 @@
-﻿namespace Wajba.CurrenciesDomain;
+﻿namespace Wajba.Models.CurrenciesDomain;
 
 public class Currencies : FullAuditedEntity<int>
 {

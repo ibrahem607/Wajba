@@ -1,4 +1,4 @@
-﻿namespace Wajba.ItemTaxDomain;
+﻿namespace Wajba.Models.ItemTaxDomain;
 
 public class ItemTax : FullAuditedEntity<int>
 {
