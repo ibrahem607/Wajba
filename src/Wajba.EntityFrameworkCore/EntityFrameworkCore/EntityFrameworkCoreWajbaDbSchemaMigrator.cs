@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Wajba.Data;
-using Volo.Abp.DependencyInjection;
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using System;
+global using System.Threading.Tasks;
+global using Volo.Abp.DependencyInjection;
+global using Wajba.Data;
 
 namespace Wajba.EntityFrameworkCore;
 
@@ -20,12 +19,6 @@ public class EntityFrameworkCoreWajbaDbSchemaMigrator
 
     public async Task MigrateAsync()
     {
-        /* We intentionally resolve the WajbaDbContext
-         * from IServiceProvider (instead of directly injecting it)
-         * to properly get the connection string of the current tenant in the
-         * current scope.
-         */
-
         await _serviceProvider
             .GetRequiredService<WajbaDbContext>()
             .Database

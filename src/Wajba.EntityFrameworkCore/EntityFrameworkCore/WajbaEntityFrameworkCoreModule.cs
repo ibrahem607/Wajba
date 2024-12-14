@@ -1,17 +1,24 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Uow;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.Modularity;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
+﻿global using Volo.Abp.EntityFrameworkCore.SqlServer;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.TenantManagement.EntityFrameworkCore;
+global using Volo.Abp.AuditLogging.EntityFrameworkCore;
+global using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
+global using Volo.Abp.Data;
+global using Volo.Abp.EntityFrameworkCore;
+global using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+global using Volo.Abp.Identity;
+global using Volo.Abp.Identity.EntityFrameworkCore;
+global using Volo.Abp.OpenIddict.EntityFrameworkCore;
+global using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+global using Volo.Abp.SettingManagement.EntityFrameworkCore;
+global using Volo.Abp.TenantManagement;
+global using Wajba.BranchDomain;
+global using Wajba.CurrenciesDomain;
+global using Wajba.ItemExtraDomain;
+global using Wajba.ItemTaxDomain;
+global using Wajba.ItemVariationDomain;
+global using Wajba.LanguageDomain;
+global using Wajba.OfferDomain;
 
 namespace Wajba.EntityFrameworkCore;
 

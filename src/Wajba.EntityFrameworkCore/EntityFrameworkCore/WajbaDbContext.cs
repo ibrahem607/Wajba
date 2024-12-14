@@ -1,24 +1,4 @@
-﻿using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
-using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.Identity;
-using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
-using Wajba.BranchDomain;
-using Wajba.CurrenciesDomain;
-using Wajba.ItemExtraDomain;
-using Wajba.ItemTaxDomain;
-using Wajba.ItemVariationDomain;
-using Wajba.LanguageDomain;
-using Wajba.OfferDomain;
-
+﻿
 namespace Wajba.EntityFrameworkCore;
 
 [ReplaceDbContext(typeof(IIdentityDbContext))]

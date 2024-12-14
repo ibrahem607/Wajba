@@ -1,13 +1,9 @@
-﻿using System;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
+﻿global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.Extensions.Configuration;
+global using System.IO;
 
 namespace Wajba.EntityFrameworkCore;
 
-/* This class is needed for EF Core console commands
- * (like Add-Migration and Update-Database commands) */
 public class WajbaDbContextFactory : IDesignTimeDbContextFactory<WajbaDbContext>
 {
     public WajbaDbContext CreateDbContext(string[] args)

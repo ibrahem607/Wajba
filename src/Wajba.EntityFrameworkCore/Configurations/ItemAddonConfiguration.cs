@@ -1,18 +1,17 @@
 ﻿global using Wajba.ItemAddonDomain;
 
-namespace Wajba.Configurations
+namespace Wajba.Configurations;
+
+public class ItemAddonConfiguration : IEntityTypeConfiguration<ItemAddon>
 {
-    public class ItemAddonConfiguration : IEntityTypeConfiguration<ItemAddon>
+    public void Configure(EntityTypeBuilder<ItemAddon> builder)
     {
-        public void Configure(EntityTypeBuilder<ItemAddon> builder)
-        {
-            builder.ConfigureByConvention();
+        builder.ConfigureByConvention();
 
-            builder.Property(e => e.AdditionalPrice)
-                .HasColumnType("decimal(18, 2)");
+        builder.Property(e => e.AdditionalPrice)
+            .HasColumnType("decimal(18, 2)");
 
 
-            builder.ToTable("ItemAddons");
-        }
+        builder.ToTable("ItemAddons");
     }
 }

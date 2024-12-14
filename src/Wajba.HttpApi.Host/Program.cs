@@ -1,10 +1,13 @@
 ﻿global using Microsoft.AspNetCore.Builder;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Serilog;
 global using Serilog.Events;
 global using System;
 global using System.Threading.Tasks;
+global using Wajba.EntityFrameworkCore;
 
 namespace Wajba;
 public class Program
@@ -32,6 +35,12 @@ public class Program
                 .UseAutofac()
                 .UseSerilog();
             await builder.AddApplicationAsync<WajbaHttpApiHostModule>();
+            builder.Services.AddDbContext<WajbaDbContext>(
+                p =>
+                {
+                    p.UseSqlServer(builder.Configuration.GetConnectionString("c"));
+                }
+                );
             var app = builder.Build();
             await app.InitializeApplicationAsync();
             app.UseAuthentication();
