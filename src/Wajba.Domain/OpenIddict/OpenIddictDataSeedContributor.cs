@@ -12,9 +12,6 @@ global using Volo.Abp.Uow;
 
 namespace Wajba.OpenIddict;
 
-/* Creates initial data that is needed to property run the application
- * and make client-to-server communication possible.
- */
 public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
     private readonly IConfiguration _configuration;

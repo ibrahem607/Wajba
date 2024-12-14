@@ -4,10 +4,8 @@ global using Volo.Abp.Domain.Entities;
 global using Wajba.APIResponse;
 global using Wajba.Categories;
 
-namespace Wajba.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
+namespace Wajba.Controllers;
+  
     [IgnoreAntiforgeryToken]
     public class CategoryController : WajbaController
     {
@@ -170,5 +168,3 @@ namespace Wajba.Controllers
             }
         }
     }
-}
-
