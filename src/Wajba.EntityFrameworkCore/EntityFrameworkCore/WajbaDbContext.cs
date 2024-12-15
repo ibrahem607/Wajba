@@ -1,15 +1,6 @@
-﻿
-using Wajba.Models.BranchDomain;
-using Wajba.Models.CategoriesDomain;
-using Wajba.Models.CurrenciesDomain;
-using Wajba.Models.ItemAddonDomain;
-using Wajba.Models.ItemAttributeDomain;
-using Wajba.Models.ItemExtraDomain;
-using Wajba.Models.Items;
-using Wajba.Models.ItemTaxDomain;
-using Wajba.Models.ItemVariationDomain;
-using Wajba.Models.LanguageDomain;
-using Wajba.Models.OfferDomain;
+﻿global using Wajba.Models.BranchDomain;
+global using Wajba.Models.CurrenciesDomain;
+global using Wajba.Models.LanguageDomain;
 
 namespace Wajba.EntityFrameworkCore;
 

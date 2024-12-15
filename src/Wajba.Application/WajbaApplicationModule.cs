@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Account;
-using Volo.Abp.AutoMapper;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
-using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.TenantManagement;
-using Wajba.Services.ImageService;
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using Volo.Abp.Account;
+global using Volo.Abp.AutoMapper;
+global using Volo.Abp.FeatureManagement;
+global using Volo.Abp.Identity;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.PermissionManagement;
+global using Volo.Abp.SettingManagement;
+global using Volo.Abp.TenantManagement;
 
 namespace Wajba;
 

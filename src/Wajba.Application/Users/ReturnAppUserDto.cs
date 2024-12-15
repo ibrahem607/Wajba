@@ -1,5 +1,5 @@
 ﻿namespace Wajba.Users;
 
-internal class ReturnAppUserDto
+public class ReturnAppUserDto
 {
 }

@@ -1,5 +1,4 @@
-﻿using Volo.Abp.Application.Services;
-using Wajba.Localization;
+﻿global using Wajba.Localization;
 
 namespace Wajba;
 

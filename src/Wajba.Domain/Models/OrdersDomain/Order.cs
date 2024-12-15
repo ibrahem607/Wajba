@@ -15,9 +15,9 @@ public class Order:FullAuditedEntity<int>
     public virtual Branch Branch { get; set; } = new Branch();
     public ICollection<OrderItem>? OrderItems { get; set; } = new List<OrderItem>();
     //foreign key to user table
-    [ForeignKey(nameof(user))]
+    //[ForeignKey(nameof(user))]
     public int? userId { get; set; }
-    public virtual User user { get; set; } = new User();
+    //public virtual User user { get; set; } = new User();
     // Foreign key to Customer
     public string? CustomerId { get; set; }
 

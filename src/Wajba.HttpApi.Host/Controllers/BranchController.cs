@@ -2,7 +2,7 @@
 
 namespace Wajba.Controllers;
 
-public class BranchController : BaseApiController
+public class BranchController : WajbaController
 {
     private readonly IBranchAppService _branchAppService;
 
@@ -22,19 +22,16 @@ public class BranchController : BaseApiController
     {
         return await _branchAppService.GetListAsync(input);
     }
-
     [HttpPost]
     public async Task<BranchDto> CreateAsync(CreateUpdateBranchDto input)
     {
         return await _branchAppService.CreateAsync(input);
     }
-
     [HttpPut("{id}")]
     public async Task<BranchDto> UpdateAsync(int id, CreateUpdateBranchDto input)
     {
         return await _branchAppService.UpdateAsync(id, input);
     }
-
     [HttpDelete("{id}")]
     public async Task DeleteAsync(int id)
     {
