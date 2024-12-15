@@ -1,6 +1,6 @@
 ﻿namespace Wajba.Enums;
 
-public enum PaymentMethod
+public enum PaymentMethod:byte
 {
     CashOnDelivery = 1,
     CreditCard = 2,

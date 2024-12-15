@@ -3,7 +3,7 @@ global using CloudinaryDotNet.Actions;
 
 namespace Wajba.Services.ImageService;
 
-public class ImageService:IImageService
+public class ImageService : IImageService
 {
     private readonly Cloudinary _cloudinary;
 

@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Volo.Abp.EntityFrameworkCore.Modeling;
-using Wajba.Models.OfferDomain;
-
-namespace Wajba.Configurations
+﻿namespace Wajba.Configurations
 {
     public class OfferCategoryConfiguration : IEntityTypeConfiguration<OfferCategory>
     {

@@ -1,5 +1,5 @@
 ﻿namespace Wajba.Enums;
-public enum DashboardUserTypes
+public enum DashboardUserTypes:byte
 {
     Admin = 0,
     Employee = 1,

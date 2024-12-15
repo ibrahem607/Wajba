@@ -83,7 +83,6 @@ public class CategoryAppService:ApplicationService
             ObjectMapper.Map<List<Category>, List<CategoryDto>>(items)
         );
     }
-
     public async Task DeleteAsync(int id)
     {
         await _categoryRepository.DeleteAsync(id);
