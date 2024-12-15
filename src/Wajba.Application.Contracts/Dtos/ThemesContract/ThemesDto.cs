@@ -1,6 +1,6 @@
 ﻿namespace Wajba.Dtos.ThemesContract;
 
-public class ThemesDto
+public class ThemesDto:EntityDto<int>
 {
     public int Id { get; set; }
     public string LogoUrl { get; set; }

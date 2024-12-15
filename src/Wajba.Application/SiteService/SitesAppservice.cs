@@ -13,7 +13,6 @@ public class SitesAppservice : ApplicationService
     }
     public async Task<SiteDto> CreateAsync(CreateSiteDto input)
     {
-       
         Site site = new Site()
         {
             AndroidAPPLink = input.AndroidAPPLink,
@@ -31,7 +30,7 @@ public class SitesAppservice : ApplicationService
             IsDeleted = false,
         };
         Site site1 = await _repository.InsertAsync(site, true);
-        return ObjectMapper.Map<Site, SiteDto>(site);
+        return ObjectMapper.Map<Site, SiteDto>(site1);
     }
     public async Task<PagedResultDto<SiteDto>> GetListAsync(GetSiteInput input)
     {
@@ -63,7 +62,7 @@ public class SitesAppservice : ApplicationService
         site.LanguageId = input.LanguageId;
         site.LastModificationTime = System.DateTime.Now;
         Site site1 = await _repository.UpdateAsync(site, true);
-        return ObjectMapper.Map<Site, SiteDto>(site);
+        return ObjectMapper.Map<Site, SiteDto>(site1);
     }
     public async Task<SiteDto> GetByIdAsync(int id)
     {
