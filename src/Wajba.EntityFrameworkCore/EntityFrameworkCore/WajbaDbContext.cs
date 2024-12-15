@@ -1,6 +1,8 @@
 ﻿global using Wajba.Models.BranchDomain;
 global using Wajba.Models.CurrenciesDomain;
 global using Wajba.Models.LanguageDomain;
+global using Wajba.Models.SiteDomain;
+global using Wajba.Models.ThemesDomain;
 
 namespace Wajba.EntityFrameworkCore;
 
@@ -56,6 +58,8 @@ public class WajbaDbContext :
     public DbSet<ItemTax> ItemTaxes { get; set; }
     public DbSet<ItemBranch> itemBranches { get; set; }
     public DbSet<Branch> Branches { get; set; }
+    public DbSet<Theme> Themes { get; set; }
+    public DbSet<Site> Sites { get; set; }
     #endregion
     public WajbaDbContext(DbContextOptions<WajbaDbContext> options)
         : base(options)

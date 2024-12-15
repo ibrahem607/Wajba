@@ -1,25 +1,24 @@
 ﻿global using Wajba.Models.ItemVariationDomain;
 
-namespace Wajba.Configurations
+namespace Wajba.Configurations;
+
+public class ItemVariationConfiguration : IEntityTypeConfiguration<ItemVariation>
 {
-    public class ItemVariationConfiguration : IEntityTypeConfiguration<ItemVariation>
+    public void Configure(EntityTypeBuilder<ItemVariation> builder)
     {
-        public void Configure(EntityTypeBuilder<ItemVariation> builder)
-        {
-            builder.ConfigureByConvention();
-           
-            builder.Property(e => e.AdditionalPrice)
-                .HasColumnType("decimal(18, 2)");
+        builder.ConfigureByConvention();
+       
+        builder.Property(e => e.AdditionalPrice)
+            .HasColumnType("decimal(18, 2)");
 
-            builder.HasOne(e => e.Item)
-                .WithMany(i => i.ItemVariations)
-                .HasForeignKey(e => e.ItemId);
+        builder.HasOne(e => e.Item)
+            .WithMany(i => i.ItemVariations)
+            .HasForeignKey(e => e.ItemId);
 
-            builder.HasOne(e => e.ItemAttributes)
-                .WithMany()
-                .HasForeignKey(e => e.ItemAttributesId);
+        builder.HasOne(e => e.ItemAttributes)
+            .WithMany()
+            .HasForeignKey(e => e.ItemAttributesId);
 
-            builder.ToTable("ItemVariations");
-        }
+        builder.ToTable("ItemVariations");
     }
 }

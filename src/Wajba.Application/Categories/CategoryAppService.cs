@@ -28,10 +28,7 @@ public class CategoryAppService:ApplicationService
     {
         string? imageUrl = null;
         if (input.Image != null)
-        {
             imageUrl = await _imageService.UploadAsync(input.Image);
-        }
-
         var category = new Category
         {
             Name = input.name,
@@ -46,16 +43,11 @@ public class CategoryAppService:ApplicationService
     public async Task<CategoryDto> UpdateAsync(int id, CreateUpdateCategoryDto input)
     {
         var category = await _categoryRepository.GetAsync(id);
-
         if (input.Image != null)
-        {
             category.ImageUrl = await _imageService.UploadAsync(input.Image);
-        }
-
         category.Name = input.name;
         category.Description = input.Description;
         category.Status = input.status;
-
         var updatedcategory=await _categoryRepository.UpdateAsync(category);
 
         return ObjectMapper.Map<Category, CategoryDto>(updatedcategory);
