@@ -15,4 +15,8 @@ public class BranchDto : EntityDto<int>
     public string Address { get; set; }
     public int Status { get; set; }
     //public int CompanyId { get; set; }
+    public BranchDto()
+    {
+     
+    }
 }
