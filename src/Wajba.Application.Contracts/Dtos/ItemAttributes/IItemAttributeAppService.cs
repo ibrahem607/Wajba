@@ -1,11 +1,10 @@
-﻿namespace Wajba.Dtos.ItemAttributes
+﻿namespace Wajba.Dtos.ItemAttributes;
+
+public interface IItemAttributeAppService :
+ICrudAppService<
+    ItemAttributeDto,
+    int,
+    PagedAndSortedResultRequestDto,
+    CreateUpdateItemAttributeDto>
 {
-    public interface IItemAttributeAppService :
-    ICrudAppService<
-        ItemAttributeDto,
-        int,
-        PagedAndSortedResultRequestDto,
-        CreateUpdateItemAttributeDto>
-    {
-    }
 }

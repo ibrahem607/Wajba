@@ -27,7 +27,6 @@ public class CategoryAppService:ApplicationService
     public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto input)
     {
         string? imageUrl = null;
-
         if (input.Image != null)
         {
             imageUrl = await _imageService.UploadAsync(input.Image);
@@ -40,10 +39,8 @@ public class CategoryAppService:ApplicationService
             ImageUrl = imageUrl,
             Status = input.status
         };
-
         var insertedCategory = await _categoryRepository.InsertAsync(category);
         return ObjectMapper.Map<Category, CategoryDto>(insertedCategory);
-
     }
 
     public async Task<CategoryDto> UpdateAsync(int id, CreateUpdateCategoryDto input)
@@ -72,24 +69,15 @@ public class CategoryAppService:ApplicationService
 
     public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryInput input)
     {
-        // Get IQueryable from the repository
         var queryable = await _categoryRepository.GetQueryableAsync();
-
-        // Apply conditional filtering using WhereIf
         queryable = queryable.WhereIf(
             !string.IsNullOrWhiteSpace(input.Filter),
             c => c.Name.Contains(input.Filter) || c.Description.Contains(input.Filter)
         );
-
-        // Count the total items
         var totalCount = await AsyncExecuter.CountAsync(queryable);
-
-        // Apply sorting, paging, and execute the query
         var items = await AsyncExecuter.ToListAsync(queryable
             .OrderBy(input.Sorting ?? nameof(Category.Name))
             .PageBy(input.SkipCount, input.MaxResultCount));
-
-        // Map and return the result
         return new PagedResultDto<CategoryDto>(
             totalCount,
             ObjectMapper.Map<List<Category>, List<CategoryDto>>(items)

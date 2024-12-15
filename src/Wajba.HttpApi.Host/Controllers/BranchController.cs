@@ -1,4 +1,4 @@
-﻿using Wajba.Dtos.BranchContract;
+﻿global using Wajba.Dtos.BranchContract;
 
 namespace Wajba.Controllers;
 

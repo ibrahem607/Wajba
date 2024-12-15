@@ -1,8 +1,7 @@
-﻿namespace Wajba.Dtos.ItemAttributes
+﻿namespace Wajba.Dtos.ItemAttributes;
+
+public class CreateUpdateItemAttributeDto
 {
-    public class CreateUpdateItemAttributeDto
-    {
-        public string Name { get; set; }
-        public Status Status { get; set; }
-    }
+    public string Name { get; set; }
+    public Status Status { get; set; }
 }
