@@ -1,7 +1,6 @@
 ﻿global using Wajba.Dtos.TimeSlotsContract;
 global using Wajba.Models.TimeSlotsDomain;
-using System;
-using Wajba.Models.ThemesDomain;
+global using System;
 
 namespace Wajba.TimeSlotsServices;
 

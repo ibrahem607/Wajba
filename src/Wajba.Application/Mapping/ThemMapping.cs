@@ -1,6 +1,6 @@
-﻿namespace Wajba.Mappings;
+﻿namespace Wajba.Mapping;
 
-public class ThemMapping:Profile
+public class ThemMapping : Profile
 {
     public ThemMapping()
     {

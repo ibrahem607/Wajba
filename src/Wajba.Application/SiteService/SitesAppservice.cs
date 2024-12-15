@@ -6,13 +6,29 @@ namespace Wajba.SiteService;
 public class SitesAppservice : ApplicationService
 {
     private readonly IRepository<Site, int> _repository;
+    private readonly IRepository<Branch, int> _repository1;
+    private readonly IRepository<Currencies, int> _repository2;
+    private readonly IRepository<Language, int> _repository3;
 
-    public SitesAppservice(IRepository<Site, int> repository)
+    public SitesAppservice(IRepository<Site, int> repository,
+        IRepository<Branch,int> repository1,
+        IRepository<Currencies,int> repository2,
+        IRepository<Language,int> repository3)
     {
         _repository = repository;
+       _repository1 = repository1;
+      _repository2 = repository2;
+     _repository3 = repository3;
     }
     public async Task<SiteDto> CreateAsync(CreateSiteDto input)
     {
+        Branch branch =await _repository1.FindAsync(input.BranchId);
+        if (branch == null)
+            return null;
+        if (await _repository2.FindAsync(input.CurrencyId) == null)
+            return null;
+        if (await _repository3.FindAsync(input.LanguageId) == null)
+            return null;
         Site site = new Site()
         {
             AndroidAPPLink = input.AndroidAPPLink,
@@ -47,6 +63,13 @@ public class SitesAppservice : ApplicationService
     {
         Site site = await _repository.GetAsync(id);
         if (site == null)
+            return null;
+        Branch branch = await _repository1.FindAsync(input.BranchId);
+        if (branch == null)
+            return null;
+        if (await _repository2.FindAsync(input.CurrencyId) == null)
+            return null;
+        if (await _repository3.FindAsync(input.LanguageId) == null)
             return null;
         site.Name = input.Name;
         site.Email = input.Email;

@@ -1,6 +1,6 @@
 ﻿global using AutoMapper;
 
-namespace Wajba.Mappings;
+namespace Wajba.Mapping;
 
 public class CategoryMappingProfile : Profile
 {
