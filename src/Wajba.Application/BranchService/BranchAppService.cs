@@ -1,5 +1,9 @@
 ﻿global using Wajba.Models.BranchDomain;
 global using Wajba.Dtos.BranchContract;
+using Volo.Abp;
+using Volo.Abp.Application.Services;
+using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Repositories;
 
 namespace Wajba.BranchService;
 
