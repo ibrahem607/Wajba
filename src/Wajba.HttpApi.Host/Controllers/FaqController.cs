@@ -11,6 +11,7 @@ public class FaqController : WajbaController
     {
         _faqAppService = faqAppService;
     }
+    [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] CreateFaqs input)
     {
         try
