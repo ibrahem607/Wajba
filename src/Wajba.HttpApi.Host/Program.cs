@@ -34,7 +34,7 @@ public class Program
                 .UseAutofac()
                 .UseSerilog();
             await builder.AddApplicationAsync<WajbaHttpApiHostModule>();
-            
+
             var app = builder.Build();
             await app.InitializeApplicationAsync();
             app.UseAuthentication();
@@ -56,5 +56,6 @@ public class Program
         {
             Log.CloseAndFlush();
         }
+
     }
 }
