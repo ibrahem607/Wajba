@@ -1,6 +1,5 @@
 ﻿global using Wajba.ThemesService;
-using Wajba.Categories;
-using Wajba.Dtos.ThemesContract;
+global using Wajba.Dtos.ThemesContract;
 
 namespace Wajba.Controllers;
 

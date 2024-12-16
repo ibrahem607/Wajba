@@ -14,6 +14,5 @@ public class WajbaBrandingProvider : DefaultBrandingProvider
     {
         _localizer = localizer;
     }
-
     public override string AppName => _localizer["AppName"];
 }

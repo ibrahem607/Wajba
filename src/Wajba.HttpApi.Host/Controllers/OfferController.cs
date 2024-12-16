@@ -1,14 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.Domain.Entities;
-using Wajba.APIResponse;
-using Wajba.OffersContract;
-using Wajba.OfferService;
+﻿global using Wajba.OffersContract;
+global using Wajba.OfferService;
 
 namespace Wajba.Controllers
 {

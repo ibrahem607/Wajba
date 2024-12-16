@@ -42,20 +42,19 @@ public class CategoryAppService:ApplicationService
 
     public async Task<CategoryDto> UpdateAsync(int id, CreateUpdateCategoryDto input)
     {
-        var category = await _categoryRepository.GetAsync(id);
+        Category category = await _categoryRepository.GetAsync(id);
         if (input.Image != null)
             category.ImageUrl = await _imageService.UploadAsync(input.Image);
         category.Name = input.name;
         category.Description = input.Description;
         category.Status = input.status;
-        var updatedcategory=await _categoryRepository.UpdateAsync(category);
-
+        Category updatedcategory=await _categoryRepository.UpdateAsync(category);
         return ObjectMapper.Map<Category, CategoryDto>(updatedcategory);
     }
 
     public async Task<CategoryDto> GetByIdAsync(int id)
     {
-        var category = await _categoryRepository.GetAsync(id);
+        Category category = await _categoryRepository.GetAsync(id);
         return ObjectMapper.Map<Category, CategoryDto>(category);
     }
 
