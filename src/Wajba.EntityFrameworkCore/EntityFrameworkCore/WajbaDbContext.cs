@@ -49,6 +49,7 @@ public class WajbaDbContext :
     public DbSet<Theme> Themes { get; set; }
     public DbSet<Site> Sites { get; set; }
     public DbSet<TimeSlot> TimeSlots { get; set; }
+    public DbSet<DineInTable> DineInTables { get; set; }
     #endregion
     public WajbaDbContext(DbContextOptions<WajbaDbContext> options)
         : base(options)

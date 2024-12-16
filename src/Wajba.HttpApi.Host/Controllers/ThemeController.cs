@@ -1,11 +1,5 @@
 ﻿global using Wajba.ThemesService;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities;
-using Wajba.APIResponse;
-using Wajba.Categories;
-using Wajba.Dtos.ThemesContract;
+global using Wajba.Dtos.ThemesContract;
 
 namespace Wajba.Controllers;
 

@@ -24,11 +24,11 @@ public class SitesAppservice : ApplicationService
     {
         Branch branch =await _repository1.FindAsync(input.BranchId);
         if (branch == null)
-            return null;
+            throw new Exception("Branch Not Found");
         if (await _repository2.FindAsync(input.CurrencyId) == null)
-            return null;
+            throw new Exception("Currency Not Found");
         if (await _repository3.FindAsync(input.LanguageId) == null)
-            return null;
+            throw new Exception("Language Not Found");
         Site site = new Site()
         {
             AndroidAPPLink = input.AndroidAPPLink,
@@ -63,14 +63,14 @@ public class SitesAppservice : ApplicationService
     {
         Site site = await _repository.GetAsync(id);
         if (site == null)
-            return null;
+            throw new Exception("Site Not Found");
         Branch branch = await _repository1.FindAsync(input.BranchId);
         if (branch == null)
-            return null;
+            throw new Exception( "Branch Not Found");
         if (await _repository2.FindAsync(input.CurrencyId) == null)
-            return null;
+            throw new Exception( "Currency Not Found");
         if (await _repository3.FindAsync(input.LanguageId) == null)
-            return null;
+            throw new Exception("Language Not Found");
         site.Name = input.Name;
         site.Email = input.Email;
         site.IOSAPPLink = input.IOSAPPLink;
@@ -83,17 +83,21 @@ public class SitesAppservice : ApplicationService
         site.BranchId = input.BranchId;
         site.CurrencyId = input.CurrencyId;
         site.LanguageId = input.LanguageId;
-        site.LastModificationTime = System.DateTime.Now;
+        site.LastModificationTime = System.DateTime.UtcNow;
         Site site1 = await _repository.UpdateAsync(site, true);
         return ObjectMapper.Map<Site, SiteDto>(site1);
     }
     public async Task<SiteDto> GetByIdAsync(int id)
     {
         Site site = await _repository.GetAsync(id);
+        if (site == null)
+            throw new Exception("Not Found");
         return ObjectMapper.Map<Site, SiteDto>(site);
     }
     public async Task DeleteAsync(int id)
     {
+        if (await _repository.FindAsync(id) == null)
+            throw new Exception("Not Found");
         await _repository.DeleteAsync(id);
     }
 }

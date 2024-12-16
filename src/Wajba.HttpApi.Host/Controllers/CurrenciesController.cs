@@ -1,4 +1,4 @@
-﻿using Wajba.Dtos.CurrenciesContract;
+﻿global using Wajba.Dtos.CurrenciesContract;
 
 namespace Wajba.Controllers
 {

@@ -1,27 +1,28 @@
-﻿global using Wajba.Dtos.TimeSlotsContract;
-global using Wajba.TimeSlotsServices;
+﻿global using Wajba.DineIntableService;
+global using Wajba.Dtos.DineInTableContract;
 
 namespace Wajba.Controllers;
 
-public class TimeSlotController : WajbaController
+public class DineIntableController : WajbaController
 {
-    private readonly TimeSlotsAppservice _timeSlotsServices;
+    private readonly DineinTableAppServices _dineinTableAppServices;
 
-    public TimeSlotController(TimeSlotsAppservice timeSlotsServices)
+    public DineIntableController(DineinTableAppServices dineinTableAppServices)
     {
-      _timeSlotsServices = timeSlotsServices;
+        _dineinTableAppServices = dineinTableAppServices;
     }
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromForm] CreateTimeSlotDot input)
+    public async Task<IActionResult> CreateAsync([FromForm] CreateDineIntable input)
     {
         try
         {
-            await _timeSlotsServices.CreateAsync(input);
+            await _dineinTableAppServices.CreateAsync(input);
+
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "TimeSlot created successfully.",
-                Data = input
+                Message = "DineTable created successfully.",
+                Data = null
             });
         }
         catch (Exception ex)
@@ -29,23 +30,23 @@ public class TimeSlotController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error creating timeslot: {ex.Message}",
+                Message = $"Error creating DineTable: {ex.Message}",
                 Data = null
             });
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateTimeSlotDot input)
+    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateDineIntable input)
     {
         try
         {
-            TimeSlotDto timeSlotDto= await _timeSlotsServices.UpdateAsync(id, input);
+            DiniINDto dineInTable = await _dineinTableAppServices.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "timeslot updated successfully.",
-                Data = timeSlotDto
+                Message = "dineInTable updated successfully.",
+                Data = dineInTable
             });
         }
         catch (EntityNotFoundException)
@@ -53,7 +54,7 @@ public class TimeSlotController : WajbaController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "timeslot not found.",
+                Message = "dineInTable not found.",
                 Data = null
             });
         }
@@ -63,12 +64,13 @@ public class TimeSlotController : WajbaController
     {
         try
         {
-            TimeSlotDto timeSlot = await _timeSlotsServices.GetByIdAsync(id);
+            var category = await _dineinTableAppServices.GetByIdAsync(id);
+
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "timeslot retrieved successfully.",
-                Data = timeSlot
+                Message = "dineInTable retrieved successfully.",
+                Data = category
             });
         }
         catch (EntityNotFoundException)
@@ -76,7 +78,7 @@ public class TimeSlotController : WajbaController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "timeslot not found.",
+                Message = "dineInTable not found.",
                 Data = null
             });
         }
@@ -85,23 +87,24 @@ public class TimeSlotController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving timeslot: {ex.Message}",
+                Message = $"Error retrieving dineInTable: {ex.Message}",
                 Data = null
             });
         }
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetListAsync([FromQuery] GetTimeSlotInput input)
+    public async Task<IActionResult> GetListAsync([FromQuery] GetDiniTableInput input)
+
     {
         try
         {
-            var pagedResultDto = await _timeSlotsServices.GetListAsync(input);
-            return Ok(new ApiResponse<PagedResultDto<TimeSlotDto>>
+            var dto = await _dineinTableAppServices.GetListAsync(input);
+            return Ok(new ApiResponse<PagedResultDto<DiniINDto>>
             {
                 Success = true,
-                Message = "timeslots retrieved successfully.",
-                Data = pagedResultDto
+                Message = "dinetables retrieved successfully.",
+                Data = dto
             });
         }
         catch (Exception ex)
@@ -109,7 +112,7 @@ public class TimeSlotController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving timeslot: {ex.Message}",
+                Message = $"Error retrieving dinetables: {ex.Message}",
                 Data = null
             });
         }
@@ -119,11 +122,11 @@ public class TimeSlotController : WajbaController
     {
         try
         {
-            await _timeSlotsServices.DeleteAsync(id);
+            await _dineinTableAppServices.DeleteAsync(id);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "timeslot deleted successfully.",
+                Message = "DinieTable deleted successfully.",
                 Data = null
             });
         }
@@ -132,7 +135,7 @@ public class TimeSlotController : WajbaController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "timeslot not found.",
+                Message = "DinieTable not found.",
                 Data = null
             });
         }
@@ -141,7 +144,7 @@ public class TimeSlotController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error deleting timeslot: {ex.Message}",
+                Message = $"Error deleting DinieTable: {ex.Message}",
                 Data = null
             });
         }
