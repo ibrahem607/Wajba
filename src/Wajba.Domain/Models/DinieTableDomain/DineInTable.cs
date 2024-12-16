@@ -1,4 +1,4 @@
-﻿namespace Wajba.Models.DinieTable;
+﻿namespace Wajba.Models.BranchDomain;
 
 public class DineInTable : FullAuditedEntity<int>
 {
