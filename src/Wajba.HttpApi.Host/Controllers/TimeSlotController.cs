@@ -40,12 +40,12 @@ public class TimeSlotController : WajbaController
     {
         try
         {
-            var updatedcategory = await _timeSlotsServices.UpdateAsync(id, input);
+            TimeSlotDto timeSlotDto= await _timeSlotsServices.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
                 Message = "timeslot updated successfully.",
-                Data = updatedcategory
+                Data = timeSlotDto
             });
         }
         catch (EntityNotFoundException)
@@ -85,7 +85,7 @@ public class TimeSlotController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving category: {ex.Message}",
+                Message = $"Error retrieving timeslot: {ex.Message}",
                 Data = null
             });
         }
