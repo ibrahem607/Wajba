@@ -16,9 +16,9 @@ namespace Wajba.Controllers
     [ApiController]
     public class OfferController : AbpController
     {
-        private readonly IOfferService _offerAppService;
+        private readonly OfferAppService _offerAppService;
 
-        public OfferController(IOfferService offerAppService)
+        public OfferController(OfferAppService offerAppService)
         {
             _offerAppService = offerAppService;
         }
