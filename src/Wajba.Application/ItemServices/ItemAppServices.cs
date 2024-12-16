@@ -1,5 +1,11 @@
 ﻿global using Wajba.Dtos.ItemsDtos;
 global using Wajba.Models.Items;
+using AutoMapper.Internal.Mappers;
+using System.Threading.Tasks;
+using Volo.Abp.Application.Services;
+using Volo.Abp.Domain.Repositories;
+using Wajba.Models.CategoriesDomain;
+using Wajba.Services.ImageService;
 
 namespace Wajba.ItemServices;
 

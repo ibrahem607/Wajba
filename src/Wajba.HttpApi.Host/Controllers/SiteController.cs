@@ -1,11 +1,17 @@
-﻿global using Wajba.SiteService;
-global using Wajba.Dtos.SitesContact;
+﻿ using Wajba.SiteService;
+using Wajba.Dtos.SitesContact;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System;
+using Wajba.APIResponse;
+using Volo.Abp.Domain.Entities;
+using Volo.Abp.AspNetCore.Mvc;
 
 namespace Wajba.Controllers;
 
 [IgnoreAntiforgeryToken]
 
-public class SiteController : WajbaController
+public class SiteController :AbpController
 {
     private readonly SitesAppservice _sitesAppservice;
 
