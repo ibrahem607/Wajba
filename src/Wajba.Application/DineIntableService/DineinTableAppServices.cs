@@ -1,4 +1,4 @@
-﻿global using Wajba.Models.DinieTable;
+﻿global using Wajba.Models.BranchDomain;
 global using Wajba.Dtos.DineInTableContract;
 
 namespace Wajba.DineIntableService;
