@@ -1,6 +1,9 @@
 ﻿global using Wajba.Models.BranchDomain;
 global using Wajba.Models.CurrenciesDomain;
 global using Wajba.Models.LanguageDomain;
+global using Wajba.Models.SiteDomain;
+global using Wajba.Models.ThemesDomain;
+using Wajba.Models.TimeSlotsDomain;
 
 namespace Wajba.EntityFrameworkCore;
 
@@ -12,20 +15,7 @@ public class WajbaDbContext :
     IIdentityDbContext,
     ITenantManagementDbContext
 {
-    /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
     #region Entities from the modules
-
-    /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
-     * and replaced them for this DbContext. This allows you to perform JOIN
-     * queries for the entities of these modules over the repositories easily. You
-     * typically don't need that for other modules. But, if you need, you can
-     * implement the DbContext interface of the needed module and use ReplaceDbContext
-     * attribute just like IIdentityDbContext and ITenantManagementDbContext.
-     *
-     * More info: Replacing a DbContext of a module ensures that the related module
-     * uses this DbContext on runtime. Otherwise, it will use its own DbContext class.
-     */
 
     //Identity
     public DbSet<IdentityUser> Users { get; set; }
@@ -56,6 +46,9 @@ public class WajbaDbContext :
     public DbSet<ItemTax> ItemTaxes { get; set; }
     public DbSet<ItemBranch> itemBranches { get; set; }
     public DbSet<Branch> Branches { get; set; }
+    public DbSet<Theme> Themes { get; set; }
+    public DbSet<Site> Sites { get; set; }
+    public DbSet<TimeSlot> TimeSlots { get; set; }
     #endregion
     public WajbaDbContext(DbContextOptions<WajbaDbContext> options)
         : base(options)

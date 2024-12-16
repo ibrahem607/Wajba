@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 using Wajba.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Wajba.EntityFrameworkCore;
 namespace Wajba.Migrations
 {
     [DbContext(typeof(WajbaDbContext))]
-    partial class WajbaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241215154600_creatthemes")]
+    partial class creatthemes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2643,94 +2646,6 @@ namespace Wajba.Migrations
                     b.ToTable("OfferItems", (string)null);
                 });
 
-            modelBuilder.Entity("Wajba.Models.SiteDomain.Site", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AndroidAPPLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BranchId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Copyrights")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<int?>("CurrenciesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("DeleterId");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletionTime");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GoogleMapKey")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IOSAPPLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsDeleted");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("currencyPosition")
-                        .HasColumnType("int");
-
-                    b.Property<int>("languageSwitch")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CurrenciesId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("Sites");
-                });
-
             modelBuilder.Entity("Wajba.Models.ThemesDomain.Theme", b =>
                 {
                     b.Property<int>("Id")
@@ -3058,31 +2973,6 @@ namespace Wajba.Migrations
                     b.Navigation("Item");
 
                     b.Navigation("Offer");
-                });
-
-            modelBuilder.Entity("Wajba.Models.SiteDomain.Site", b =>
-                {
-                    b.HasOne("Wajba.Models.BranchDomain.Branch", "Branch")
-                        .WithMany()
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Wajba.Models.CurrenciesDomain.Currencies", "Currencies")
-                        .WithMany()
-                        .HasForeignKey("CurrenciesId");
-
-                    b.HasOne("Wajba.Models.LanguageDomain.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Currencies");
-
-                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

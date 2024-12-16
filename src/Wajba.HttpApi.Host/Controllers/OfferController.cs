@@ -118,12 +118,12 @@ namespace Wajba.Controllers
         {
             try
             {
-                var offers = await _offerAppService.GetListAsync(input);
+                //var offers = await _offerAppService.GetListAsync(input);
                 return Ok(new ApiResponse<PagedResultDto<OfferDto>>
                 {
                     Success = true,
                     Message = "Offers retrieved successfully.",
-                    Data = offers
+                    Data = null
                 });
             }
             catch (Exception ex)

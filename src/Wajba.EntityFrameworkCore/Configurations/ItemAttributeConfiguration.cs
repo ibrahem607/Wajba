@@ -1,13 +1,12 @@
 ﻿global using Wajba.Models.ItemAttributeDomain;
 
-namespace Wajba.Configurations
+namespace Wajba.Configurations;
+
+public class ItemAttributeConfiguration : IEntityTypeConfiguration<ItemAttribute>
 {
-    public class ItemAttributeConfiguration : IEntityTypeConfiguration<ItemAttribute>
+    public void Configure(EntityTypeBuilder<ItemAttribute> builder)
     {
-        public void Configure(EntityTypeBuilder<ItemAttribute> builder)
-        {
-            builder.ConfigureByConvention();
-            builder.ToTable("ItemAttributes");
-        }
+        builder.ConfigureByConvention();
+        builder.ToTable("ItemAttributes");
     }
 }
