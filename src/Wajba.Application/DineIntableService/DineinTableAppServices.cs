@@ -4,16 +4,16 @@ global using Wajba.Dtos.DineInTableContract;
 namespace Wajba.DineIntableService;
 
 [RemoteService(false)]
-public class DineinTableAppServices:ApplicationService
+public class DineinTableAppServices : ApplicationService
 {
     private readonly IRepository<DineInTable, int> _repository;
     private readonly IRepository<Branch, int> _branchrepo;
 
     public DineinTableAppServices(IRepository<DineInTable, int> repository,
-        IRepository<Branch,int> branchrepo)
+        IRepository<Branch, int> branchrepo)
     {
         _repository = repository;
-       _branchrepo = branchrepo;
+        _branchrepo = branchrepo;
     }
     public async Task<DiniINDto> CreateAsync(CreateDineIntable input)
     {
