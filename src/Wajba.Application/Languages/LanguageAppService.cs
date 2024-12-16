@@ -9,7 +9,8 @@ public class LanguageAppService : ApplicationService
     private readonly IRepository<Language, int> _languageRepository;
     private readonly IImageService _imageUploadService; // Assume this handles image uploads
 
-    public LanguageAppService(IRepository<Language, int> languageRepository, IImageService imageUploadService)
+    public LanguageAppService(IRepository<Language, int> languageRepository,
+        IImageService imageUploadService)
     {
         _languageRepository = languageRepository;
         _imageUploadService = imageUploadService;
@@ -35,7 +36,6 @@ public class LanguageAppService : ApplicationService
     public async Task<LanguageDto> CreateAsync(CreateUpdateLanguageDto input)
     {
         string imageUrl = await _imageUploadService.UploadAsync(input.Image); // Upload image
-
         var language = ObjectMapper.Map<CreateUpdateLanguageDto, Language>(input);
         language.ImageUrl = imageUrl;
 

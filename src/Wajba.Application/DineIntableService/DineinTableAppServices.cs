@@ -1,5 +1,4 @@
-﻿global using Wajba.Models.BranchDomain;
-global using Wajba.Dtos.DineInTableContract;
+﻿global using Wajba.Dtos.DineInTableContract;
 
 namespace Wajba.DineIntableService;
 
@@ -61,7 +60,6 @@ public class DineinTableAppServices : ApplicationService
     public async Task<DiniINDto> GetByIdAsync(int id)
     {
         DineInTable dine = await _repository.GetAsync(id);
-        if (dine == null) throw new Exception("NotFound DineTable");
         return ObjectMapper.Map<DineInTable, DiniINDto>(dine);
     }
     public async Task DeleteAsync(int id)

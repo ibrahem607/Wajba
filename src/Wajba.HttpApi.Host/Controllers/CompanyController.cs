@@ -1,28 +1,26 @@
-﻿global using Wajba.Dtos.SitesContact;
-global using Wajba.SiteService;
+﻿global using Wajba.CompanyService;
+global using Wajba.Dtos.CompanyContact;
 
 namespace Wajba.Controllers;
 
-[IgnoreAntiforgeryToken]
-
-public class SiteController :AbpController
+public class CompanyController : WajbaController
 {
-    private readonly SitesAppservice _sitesAppservice;
+    private readonly CompanyAppService _companyAppService;
 
-    public SiteController(SitesAppservice sitesAppservice)
+    public CompanyController(CompanyAppService companyAppService)
     {
-        _sitesAppservice = sitesAppservice;
+        _companyAppService = companyAppService;
     }
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromForm] CreateSiteDto input)
+    public async Task<IActionResult> CreateAsync([FromForm] CreateComanyDto input)
     {
         try
         {
-            await _sitesAppservice.CreateAsync(input);
+            await _companyAppService.CreateAsync(input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site created successfully.",
+                Message = "Company created successfully.",
                 Data = null
             });
         }
@@ -31,22 +29,22 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error creating site: {ex.Message}",
+                Message = $"Error creating company: {ex.Message}",
                 Data = null
             });
         }
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateSiteDto input)
+    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateComanyDto input)
     {
         try
         {
-            var updatedsite = await _sitesAppservice.UpdateAsync(id, input);
+            CompanyDto companyDto = await _companyAppService.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site updated successfully.",
-                Data = updatedsite
+                Message = "companyDto updated successfully.",
+                Data = companyDto
             });
         }
         catch (EntityNotFoundException)
@@ -54,7 +52,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "companyDto not found.",
                 Data = null
             });
         }
@@ -64,12 +62,13 @@ public class SiteController :AbpController
     {
         try
         {
-            SiteDto site = await _sitesAppservice.GetByIdAsync(id);
+            CompanyDto companyDto = await _companyAppService.GetByIdAsync(id);
+
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site retrieved successfully.",
-                Data = site
+                Message = "companyDto retrieved successfully.",
+                Data = companyDto
             });
         }
         catch (EntityNotFoundException)
@@ -77,7 +76,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "companyDto not found.",
                 Data = null
             });
         }
@@ -86,22 +85,22 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving site: {ex.Message}",
+                Message = $"Error retrieving companyDto: {ex.Message}",
                 Data = null
             });
         }
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetListAsync([FromQuery] GetSiteInput input)
+    public async Task<IActionResult> GetListAsync([FromQuery] GetComanyInput input)
     {
         try
         {
-            var dto = await _sitesAppservice.GetListAsync(input);
-            return Ok(new ApiResponse<PagedResultDto<SiteDto>>
+            var dto = await _companyAppService.GetListAsync(input);
+            return Ok(new ApiResponse<PagedResultDto<CompanyDto>>
             {
                 Success = true,
-                Message = "sites retrieved successfully.",
+                Message = "CompanyDtos retrieved successfully.",
                 Data = dto
             });
         }
@@ -110,7 +109,7 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving sites: {ex.Message}",
+                Message = $"Error retrieving CompanyDtos: {ex.Message}",
                 Data = null
             });
         }
@@ -120,11 +119,11 @@ public class SiteController :AbpController
     {
         try
         {
-            await _sitesAppservice.DeleteAsync(id);
+            await _companyAppService.DeleteAsync(id);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site deleted successfully.",
+                Message = "CompanyDto deleted successfully.",
                 Data = null
             });
         }
@@ -133,7 +132,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "CompanyDto not found.",
                 Data = null
             });
         }
@@ -142,10 +141,9 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error deleting site: {ex.Message}",
+                Message = $"Error deleting CompanyDto: {ex.Message}",
                 Data = null
             });
         }
     }
-
 }

@@ -68,7 +68,7 @@ public class SitesAppservice : ApplicationService
         if (branch == null)
             throw new Exception( "Branch Not Found");
         if (await _repository2.FindAsync(input.CurrencyId) == null)
-            throw new Exception( "Currency Not Found");
+            throw new Exception("Currency Not Found");
         if (await _repository3.FindAsync(input.LanguageId) == null)
             throw new Exception("Language Not Found");
         site.Name = input.Name;
@@ -90,8 +90,6 @@ public class SitesAppservice : ApplicationService
     public async Task<SiteDto> GetByIdAsync(int id)
     {
         Site site = await _repository.GetAsync(id);
-        if (site == null)
-            throw new Exception("Not Found");
         return ObjectMapper.Map<Site, SiteDto>(site);
     }
     public async Task DeleteAsync(int id)
@@ -99,5 +97,6 @@ public class SitesAppservice : ApplicationService
         if (await _repository.FindAsync(id) == null)
             throw new Exception("Not Found");
         await _repository.DeleteAsync(id);
+
     }
 }

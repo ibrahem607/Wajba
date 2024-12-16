@@ -1,28 +1,26 @@
-﻿global using Wajba.Dtos.SitesContact;
-global using Wajba.SiteService;
+﻿global using Wajba.FaqService;
+global using Wajba.Dtos.FaqsContract;
 
 namespace Wajba.Controllers;
 
-[IgnoreAntiforgeryToken]
-
-public class SiteController :AbpController
+public class FaqController : WajbaController
 {
-    private readonly SitesAppservice _sitesAppservice;
+    private readonly FaqAppService _faqAppService;
 
-    public SiteController(SitesAppservice sitesAppservice)
+    public FaqController(FaqAppService faqAppService)
     {
-        _sitesAppservice = sitesAppservice;
+        _faqAppService = faqAppService;
     }
-    [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromForm] CreateSiteDto input)
+    public async Task<IActionResult> CreateAsync([FromForm] CreateFaqs input)
     {
         try
         {
-            await _sitesAppservice.CreateAsync(input);
+            await _faqAppService.CreateAsync(input);
+
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site created successfully.",
+                Message = "Faq created successfully.",
                 Data = null
             });
         }
@@ -31,22 +29,23 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error creating site: {ex.Message}",
+                Message = $"Error creating Faq: {ex.Message}",
                 Data = null
             });
         }
     }
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateSiteDto input)
+    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateFaqs input)
     {
         try
         {
-            var updatedsite = await _sitesAppservice.UpdateAsync(id, input);
+            FaqDto faqDto = await _faqAppService.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site updated successfully.",
-                Data = updatedsite
+                Message = "Faq updated successfully.",
+                Data = faqDto
             });
         }
         catch (EntityNotFoundException)
@@ -54,7 +53,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "Faq not found.",
                 Data = null
             });
         }
@@ -64,12 +63,13 @@ public class SiteController :AbpController
     {
         try
         {
-            SiteDto site = await _sitesAppservice.GetByIdAsync(id);
+            FaqDto faqDto = await _faqAppService.GetByIdAsync(id);
+
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site retrieved successfully.",
-                Data = site
+                Message = "faq retrieved successfully.",
+                Data = faqDto
             });
         }
         catch (EntityNotFoundException)
@@ -77,7 +77,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "faq not found.",
                 Data = null
             });
         }
@@ -86,23 +86,24 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving site: {ex.Message}",
+                Message = $"Error retrieving faq: {ex.Message}",
                 Data = null
             });
         }
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetListAsync([FromQuery] GetSiteInput input)
+    public async Task<IActionResult> GetListAsync([FromQuery] GetFaqInput input)
+
     {
         try
         {
-            var dto = await _sitesAppservice.GetListAsync(input);
-            return Ok(new ApiResponse<PagedResultDto<SiteDto>>
+            var pagedResultDto = await _faqAppService.GetListAsync(input);
+            return Ok(new ApiResponse<PagedResultDto<FaqDto>>
             {
                 Success = true,
-                Message = "sites retrieved successfully.",
-                Data = dto
+                Message = "Faqs retrieved successfully.",
+                Data = pagedResultDto
             });
         }
         catch (Exception ex)
@@ -110,7 +111,7 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving sites: {ex.Message}",
+                Message = $"Error retrieving faqs: {ex.Message}",
                 Data = null
             });
         }
@@ -120,11 +121,11 @@ public class SiteController :AbpController
     {
         try
         {
-            await _sitesAppservice.DeleteAsync(id);
+            await _faqAppService.DeleteAsync(id);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Site deleted successfully.",
+                Message = "Faqs deleted successfully.",
                 Data = null
             });
         }
@@ -133,7 +134,7 @@ public class SiteController :AbpController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Site not found.",
+                Message = "Faqs not found.",
                 Data = null
             });
         }
@@ -142,10 +143,9 @@ public class SiteController :AbpController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error deleting site: {ex.Message}",
+                Message = $"Error deleting faq: {ex.Message}",
                 Data = null
             });
         }
     }
-
 }

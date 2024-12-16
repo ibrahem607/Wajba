@@ -56,6 +56,8 @@ public class ThemesAppservice : ApplicationService
     }
     public async Task DeleteAsync(int id)
     {
+        if (await _repository.FindAsync(id) == null)
+            throw new Exception("Not Found");
         await _repository.DeleteAsync(id);
     }
 }

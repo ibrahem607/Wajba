@@ -3,7 +3,9 @@ global using Wajba.Models.CurrenciesDomain;
 global using Wajba.Models.LanguageDomain;
 global using Wajba.Models.SiteDomain;
 global using Wajba.Models.ThemesDomain;
-using Wajba.Models.TimeSlotsDomain;
+global using Wajba.Models.CompanyDomain;
+global using Wajba.Models.TimeSlotsDomain;
+global using Wajba.Models.FaqsDomain;
 
 namespace Wajba.EntityFrameworkCore;
 
@@ -50,6 +52,8 @@ public class WajbaDbContext :
     public DbSet<Site> Sites { get; set; }
     public DbSet<TimeSlot> TimeSlots { get; set; }
     public DbSet<DineInTable> DineInTables { get; set; }
+    public DbSet<Company> Companies { get; set; }
+    public DbSet<FAQs> FAQs { get; set; }
     #endregion
     public WajbaDbContext(DbContextOptions<WajbaDbContext> options)
         : base(options)
