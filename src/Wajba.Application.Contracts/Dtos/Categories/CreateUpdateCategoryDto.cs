@@ -4,8 +4,12 @@ namespace Wajba.Dtos.Categories;
 
 public class CreateUpdateCategoryDto
 {
-    public string? name { get; set; }
-    public IFormFile? Image { get; set; }
+    [Required]
+    public string name { get; set; }
+    [Required]
+    public IFormFile Image { get; set; }
+    [Required]
     public Status status { get; set; }
+    [Required]
     public string Description { get; set; }
 }

@@ -46,7 +46,6 @@ public class LanguageAppService : ApplicationService
     public async Task<LanguageDto> UpdateAsync(int id, CreateUpdateLanguageDto input)
     {
         var language = await _languageRepository.GetAsync(id);
-
         if (input.Image != null)
         {
             string imageUrl = await _imageUploadService.UploadAsync(input.Image);

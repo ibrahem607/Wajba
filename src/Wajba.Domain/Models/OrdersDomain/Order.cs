@@ -1,5 +1,4 @@
 ﻿global using Wajba.Models.OrdersDomain;
-global using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace Wajba.Models.Orders;
 

@@ -1,12 +1,19 @@
-﻿namespace Wajba.Enums;
+﻿global using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-public enum Status:byte
+namespace Wajba.Enums;
+
+public enum Status 
 {
-    InActive = 0,
-    Active = 1
+    [Display(Description = "InActive")]
+    InActive=1 ,
+    [Display(Description = "Active")]
+    Active = 2 
 }
-public enum ItemType:byte
+public enum ItemType : byte
 {
+    [Description("NonVeg")]
     NonVeg = 0,
+    [Description("Veg")]
     Veg = 1
 }
