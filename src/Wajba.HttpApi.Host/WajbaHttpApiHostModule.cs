@@ -1,28 +1,28 @@
-using CloudinaryDotNet;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using OpenIddict.Validation.AspNetCore;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Volo.Abp;
-using Volo.Abp.Account;
-using Volo.Abp.Account.Web;
-using Volo.Abp.AspNetCore.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Serilog;
-using Volo.Abp.Autofac;
-using Volo.Abp.Modularity;
-using Volo.Abp.Security.Claims;
-using Volo.Abp.Swashbuckle;
-using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.VirtualFileSystem;
-using Wajba.CloudinaryConfigure;
-using Wajba.MultiTenancy;
+global using CloudinaryDotNet;
+global using Microsoft.AspNetCore.Cors;
+global using Microsoft.AspNetCore.Extensions.DependencyInjection;
+global using Microsoft.OpenApi.Models;
+global using OpenIddict.Validation.AspNetCore;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using Volo.Abp;
+global using Volo.Abp.Account;
+global using Volo.Abp.Account.Web;
+global using Volo.Abp.AspNetCore.MultiTenancy;
+global using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+global using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
+global using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
+global using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+global using Volo.Abp.AspNetCore.Serilog;
+global using Volo.Abp.Autofac;
+global using Volo.Abp.Modularity;
+global using Volo.Abp.Security.Claims;
+global using Volo.Abp.Swashbuckle;
+global using Volo.Abp.UI.Navigation.Urls;
+global using Volo.Abp.VirtualFileSystem;
+global using Wajba.CloudinaryConfigure;
+global using Wajba.MultiTenancy;
 
 
 namespace Wajba;
@@ -111,7 +111,6 @@ public class WajbaHttpApiHostModule : AbpModule
         {
             options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
             options.RedirectAllowedUrls.AddRange(configuration["App:RedirectAllowedUrls"]?.Split(',') ?? Array.Empty<string>());
-
             options.Applications["Angular"].RootUrl = configuration["App:ClientUrl"];
             options.Applications["Angular"].Urls[AccountUrlNames.PasswordReset] = "account/reset-password";
         });
@@ -140,7 +139,6 @@ public class WajbaHttpApiHostModule : AbpModule
             });
         }
     }
-
     private void ConfigureConventionalControllers()
     {
         Configure<AbpAspNetCoreMvcOptions>(options =>
@@ -148,7 +146,6 @@ public class WajbaHttpApiHostModule : AbpModule
             options.ConventionalControllers.Create(typeof(WajbaApplicationModule).Assembly);
         });
     }
-
     private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
     {
         context.Services.AddAbpSwaggerGenWithOAuth(
@@ -189,19 +186,15 @@ public class WajbaHttpApiHostModule : AbpModule
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
-
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
-
         app.UseAbpRequestLocalization();
-
         if (!env.IsDevelopment())
         {
             app.UseErrorPage();
         }
-
         app.UseCorrelationId();
         app.MapAbpStaticAssets();
         app.UseRouting();

@@ -48,6 +48,7 @@ public class CategoryAppService:ApplicationService
         category.Name = input.name;
         category.Description = input.Description;
         category.Status = input.status;
+        category.LastModificationTime = DateTime.UtcNow;
         Category updatedcategory=await _categoryRepository.UpdateAsync(category);
         return ObjectMapper.Map<Category, CategoryDto>(updatedcategory);
     }
@@ -60,13 +61,13 @@ public class CategoryAppService:ApplicationService
 
     public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryInput input)
     {
-        var queryable = await _categoryRepository.GetQueryableAsync();
+        IQueryable<Category> queryable = await _categoryRepository.GetQueryableAsync();
         queryable = queryable.WhereIf(
             !string.IsNullOrWhiteSpace(input.Filter),
             c => c.Name.Contains(input.Filter) || c.Description.Contains(input.Filter)
         );
-        var totalCount = await AsyncExecuter.CountAsync(queryable);
-        var items = await AsyncExecuter.ToListAsync(queryable
+        int totalCount = await AsyncExecuter.CountAsync(queryable);
+        List<Category> items = await AsyncExecuter.ToListAsync(queryable
             .OrderBy(input.Sorting ?? nameof(Category.Name))
             .PageBy(input.SkipCount, input.MaxResultCount));
         return new PagedResultDto<CategoryDto>(

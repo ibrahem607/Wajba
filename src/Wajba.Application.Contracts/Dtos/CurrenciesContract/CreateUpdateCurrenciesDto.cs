@@ -1,11 +1,15 @@
-﻿namespace Wajba.Dtos.CurrenciesContract
+﻿namespace Wajba.Dtos.CurrenciesContract;
+
+public class CreateUpdateCurrenciesDto
 {
-    public class CreateUpdateCurrenciesDto
-    {
-        public string Name { get; set; }
-        public string Symbol { get; set; }
-        public string Code { get; set; }
-        public double ExchangeRate { get; set; }
-        public bool IsCryptoCurrency { get; set; }
-    }
+    [Required]
+    public string Name { get; set; }
+    [Required]
+    public string Symbol { get; set; }
+    [Required]
+    public string Code { get; set; }
+    [Required]
+    public double ExchangeRate { get; set; }
+    [Required]
+    public bool IsCryptoCurrency { get; set; }
 }

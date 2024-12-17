@@ -14,6 +14,8 @@ public class CompanyController : WajbaController
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] CreateComanyDto input)
     {
+        if (!ModelState.IsValid)
+            return BadRequest("Data is not valid");
         try
         {
             await _companyAppService.CreateAsync(input);
@@ -37,6 +39,8 @@ public class CompanyController : WajbaController
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateComanyDto input)
     {
+        if (!ModelState.IsValid)
+            return BadRequest("Data is not valid");
         try
         {
             CompanyDto companyDto = await _companyAppService.UpdateAsync(id, input);

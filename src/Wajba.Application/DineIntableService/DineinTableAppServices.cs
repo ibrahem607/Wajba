@@ -49,16 +49,15 @@ public class DineinTableAppServices : ApplicationService
     public async Task<PagedResultDto<DiniINDto>> GetListAsync(GetDiniTableInput input)
     {
         var queryable = await _repository.GetQueryableAsync();
+        queryable = queryable
+            .WhereIf(!string.IsNullOrEmpty(input.Name),
+            p => p.Name.ToLower() == input.Name.ToLower())
+            .WhereIf(input.Size != null,  p => p.Size == input.Size)
+            .WhereIf(!string.IsNullOrEmpty(input.Status)
+            , p => p.Status.ToString().ToLower() == input.Status.ToLower());
         var totalCount = await AsyncExecuter.CountAsync(queryable);
         var dineInTables = await AsyncExecuter.ToListAsync(queryable
-            .WhereIf(!string.IsNullOrEmpty(input.Name),
-            p => p.Name.ToLower() == input.Name.ToLower()
-            ).
-            WhereIf(input.Size != null,
-            p => p.Size == input.Size
-            )
-            .WhereIf(!string.IsNullOrEmpty(input.Status)
-            , p => p.Status.ToString().ToLower() == input.Status.ToLower())
+            .OrderBy(p=>p.Name)
               .PageBy(input.SkipCount, input.MaxResultCount));
         return new PagedResultDto<DiniINDto>(
       totalCount,
