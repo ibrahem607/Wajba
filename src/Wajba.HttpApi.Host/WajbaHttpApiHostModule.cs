@@ -51,9 +51,7 @@ public class WajbaHttpApiHostModule : AbpModule
                 options.UseAspNetCore();
             });
         });
-     
     }
-
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
