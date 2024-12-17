@@ -11,18 +11,18 @@ public class SitesAppservice : ApplicationService
     private readonly IRepository<Language, int> _repository3;
 
     public SitesAppservice(IRepository<Site, int> repository,
-        IRepository<Branch,int> repository1,
-        IRepository<Currencies,int> repository2,
-        IRepository<Language,int> repository3)
+        IRepository<Branch, int> repository1,
+        IRepository<Currencies, int> repository2,
+        IRepository<Language, int> repository3)
     {
         _repository = repository;
-       _repository1 = repository1;
-      _repository2 = repository2;
-     _repository3 = repository3;
+        _repository1 = repository1;
+        _repository2 = repository2;
+        _repository3 = repository3;
     }
     public async Task<SiteDto> CreateAsync(CreateSiteDto input)
     {
-        Branch branch =await _repository1.FindAsync(input.BranchId);
+        Branch branch = await _repository1.FindAsync(input.BranchId);
         if (branch == null)
             throw new Exception("Branch Not Found");
         if (await _repository2.FindAsync(input.CurrencyId) == null)
@@ -66,7 +66,7 @@ public class SitesAppservice : ApplicationService
             throw new Exception("Site Not Found");
         Branch branch = await _repository1.FindAsync(input.BranchId);
         if (branch == null)
-            throw new Exception( "Branch Not Found");
+            throw new Exception("Branch Not Found");
         if (await _repository2.FindAsync(input.CurrencyId) == null)
             throw new Exception("Currency Not Found");
         if (await _repository3.FindAsync(input.LanguageId) == null)

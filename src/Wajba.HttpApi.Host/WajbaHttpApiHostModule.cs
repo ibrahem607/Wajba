@@ -1,7 +1,6 @@
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using OpenIddict.Validation.AspNetCore;
 using System.Collections.Generic;
@@ -23,7 +22,6 @@ using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
 using Wajba.CloudinaryConfigure;
-using Wajba.EntityFrameworkCore;
 using Wajba.MultiTenancy;
 
 
@@ -153,18 +151,18 @@ public class WajbaHttpApiHostModule : AbpModule
 
     private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
     {
-        context.Services.AddAbpSwaggerGenWithOAuth(
-            configuration["AuthServer:Authority"]!,
-            new Dictionary<string, string>
-            {
-                    {"Wajba", "Wajba API"}
-            },
-            options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Wajba API", Version = "v1" });
-                options.DocInclusionPredicate((docName, description) => true);
-                options.CustomSchemaIds(type => type.FullName);
-            });
+        //context.Services.AddAbpSwaggerGenWithOAuth(
+        //    configuration["AuthServer:Authority"]!,
+        //    new Dictionary<string, string>
+        //    {
+        //            {"Wajba", "Wajba API"}
+        //    },
+        //    options =>
+        //    {
+        //        options.SwaggerDoc("v1", new OpenApiInfo { Title = "Wajba API", Version = "v1" });
+        //        options.DocInclusionPredicate((docName, description) => true);
+        //        options.CustomSchemaIds(type => type.FullName);
+        //    });
     }
 
     private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
@@ -219,15 +217,15 @@ public class WajbaHttpApiHostModule : AbpModule
         app.UseDynamicClaims();
         app.UseAuthorization();
 
-        app.UseSwagger();
-        app.UseAbpSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wajba API");
+        //app.UseSwagger();
+        //app.UseAbpSwaggerUI(c =>
+        //{
+        //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wajba API");
 
-            var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
-            c.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-            c.OAuthScopes("Wajba");
-        });
+        //    var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
+        //    c.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
+        //    c.OAuthScopes("Wajba");
+        //});
 
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();

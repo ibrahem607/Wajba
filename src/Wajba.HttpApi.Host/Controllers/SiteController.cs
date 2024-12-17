@@ -8,7 +8,6 @@ namespace Wajba.Controllers;
 public class SiteController :AbpController
 {
     private readonly SitesAppservice _sitesAppservice;
-
     public SiteController(SitesAppservice sitesAppservice)
     {
         _sitesAppservice = sitesAppservice;

@@ -48,7 +48,6 @@ public class Program
             {
                 throw;
             }
-
             Log.Fatal(ex, "Host terminated unexpectedly!");
             return 1;
         }
@@ -56,11 +55,5 @@ public class Program
         {
             Log.CloseAndFlush();
         }
-
     }
 }
-
-
-
-
-//comment
