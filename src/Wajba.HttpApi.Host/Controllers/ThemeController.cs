@@ -10,7 +10,7 @@ public class ThemeController : WajbaController
 
     public ThemeController(ThemesAppservice themesAppservice)
     {
-       _themesAppservice = themesAppservice;
+        _themesAppservice = themesAppservice;
     }
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] CreateThemesDto input)
@@ -148,5 +148,4 @@ public class ThemeController : WajbaController
             });
         }
     }
-
 }
