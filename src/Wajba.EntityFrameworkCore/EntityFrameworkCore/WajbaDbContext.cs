@@ -1,13 +1,11 @@
 ﻿global using Wajba.Models.BranchDomain;
+global using Wajba.Models.CompanyDomain;
 global using Wajba.Models.CurrenciesDomain;
+global using Wajba.Models.FaqsDomain;
 global using Wajba.Models.LanguageDomain;
 global using Wajba.Models.SiteDomain;
 global using Wajba.Models.ThemesDomain;
-global using Wajba.Models.CompanyDomain;
 global using Wajba.Models.TimeSlotsDomain;
-global using Wajba.Models.FaqsDomain;
-using Wajba.Models.OTPDomain;
-using Wajba.Models.OrderSetup;
 
 namespace Wajba.EntityFrameworkCore;
 
@@ -80,8 +78,6 @@ public class WajbaDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
-
-        /* Configure your own tables/entities inside here */
 
         builder.ApplyConfigurationsFromAssembly(typeof(WajbaDbContext).Assembly);
     }

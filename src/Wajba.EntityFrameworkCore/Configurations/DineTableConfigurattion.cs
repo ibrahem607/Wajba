@@ -1,5 +1,4 @@
-﻿global using Wajba.Models.BranchDomain;
-
+﻿
 namespace Wajba.Configurations;
 
 public class DineTableConfigurattion : IEntityTypeConfiguration<DineInTable>

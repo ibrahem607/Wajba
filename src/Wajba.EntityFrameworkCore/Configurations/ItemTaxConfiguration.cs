@@ -11,8 +11,6 @@ public class ItemTaxConfiguration : IEntityTypeConfiguration<ItemTax>
         builder.Property(e => e.Code)
             .HasColumnType("decimal(18, 2)");
 
-
-
         builder.ToTable("ItemTaxes");
     }
 }
