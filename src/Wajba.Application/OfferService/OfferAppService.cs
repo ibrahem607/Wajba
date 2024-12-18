@@ -15,6 +15,7 @@ using Wajba.Services.ImageService;
 
 namespace Wajba.OfferService
 {
+    [RemoteService(false)]
     public class OfferAppService : ApplicationService
     {
         private readonly IRepository<Offer, int> _offerRepository;
