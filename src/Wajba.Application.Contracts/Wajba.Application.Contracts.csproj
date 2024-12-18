@@ -9,12 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\NewFolder\**" />
-    <EmbeddedResource Remove="Dtos\NewFolder\**" />
-    <None Remove="Dtos\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Wajba.Domain.Shared\Wajba.Domain.Shared.csproj" />
   </ItemGroup>
 
