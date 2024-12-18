@@ -6,10 +6,9 @@ namespace Wajba.Controllers;
 public class TimeSlotController : WajbaController
 {
     private readonly TimeSlotsAppservice _timeSlotsServices;
-
     public TimeSlotController(TimeSlotsAppservice timeSlotsServices)
     {
-      _timeSlotsServices = timeSlotsServices;
+        _timeSlotsServices = timeSlotsServices;
     }
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] CreateTimeSlotDot input)
@@ -34,13 +33,12 @@ public class TimeSlotController : WajbaController
             });
         }
     }
-
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateTimeSlotDot input)
     {
         try
         {
-            TimeSlotDto timeSlotDto= await _timeSlotsServices.UpdateAsync(id, input);
+            TimeSlotDto timeSlotDto = await _timeSlotsServices.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
@@ -146,5 +144,4 @@ public class TimeSlotController : WajbaController
             });
         }
     }
-
 }

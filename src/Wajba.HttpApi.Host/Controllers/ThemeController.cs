@@ -17,7 +17,6 @@ public class ThemeController : WajbaController
     {
         try
         {
-            // Call the service to create the theme
             await _themesAppservice.CreateAsync(input);
 
             return Ok(new ApiResponse<object>
@@ -43,12 +42,12 @@ public class ThemeController : WajbaController
     {
         try
         {
-            var updatedcategory = await _themesAppservice.UpdateAsync(id, input);
+            ThemesDto themesDto = await _themesAppservice.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
                 Message = "THeme updated successfully.",
-                Data = updatedcategory
+                Data = themesDto
             });
         }
         catch (EntityNotFoundException)
@@ -66,14 +65,12 @@ public class ThemeController : WajbaController
     {
         try
         {
-            // Call the service to get the category by ID
-            var category = await _themesAppservice.GetByIdAsync(id);
-
+            ThemesDto themesDto = await _themesAppservice.GetByIdAsync(id);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
-                Message = "Category retrieved successfully.",
-                Data = category
+                Message = "themes retrieved successfully.",
+                Data = themesDto
             });
         }
         catch (EntityNotFoundException)
@@ -81,7 +78,7 @@ public class ThemeController : WajbaController
             return NotFound(new ApiResponse<object>
             {
                 Success = false,
-                Message = "Category not found.",
+                Message = "themes not found.",
                 Data = null
             });
         }
@@ -90,7 +87,7 @@ public class ThemeController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving category: {ex.Message}",
+                Message = $"Error retrieving themes: {ex.Message}",
                 Data = null
             });
         }
@@ -98,7 +95,6 @@ public class ThemeController : WajbaController
 
     [HttpGet]
     public async Task<IActionResult> GetListAsync([FromQuery] GetThemeInput input)
-
     {
         try
         {
@@ -115,7 +111,7 @@ public class ThemeController : WajbaController
             return BadRequest(new ApiResponse<object>
             {
                 Success = false,
-                Message = $"Error retrieving categories: {ex.Message}",
+                Message = $"Error retrieving themes: {ex.Message}",
                 Data = null
             });
         }

@@ -23,6 +23,7 @@ global using Volo.Abp.UI.Navigation.Urls;
 global using Volo.Abp.VirtualFileSystem;
 global using Wajba.CloudinaryConfigure;
 global using Wajba.MultiTenancy;
+global using Microsoft.AspNetCore.Hosting;
 
 
 namespace Wajba;
@@ -116,8 +117,7 @@ public class WajbaHttpApiHostModule : AbpModule
 
     private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
     {
-        var hostingEnvironment = context.Services.GetHostingEnvironment();
-
+        IWebHostEnvironment hostingEnvironment = context.Services.GetHostingEnvironment();
         if (hostingEnvironment.IsDevelopment())
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
@@ -179,7 +179,6 @@ public class WajbaHttpApiHostModule : AbpModule
             });
         });
     }
-
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
         var app = context.GetApplicationBuilder();
