@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Wajba.Dtos.OTPContract;
+﻿global using Wajba.Dtos.OTPContract;
 
 namespace Wajba.Controllers
 {
