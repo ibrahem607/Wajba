@@ -26,7 +26,6 @@ public class Program
             .WriteTo.Async(c => c.File("Logs/logs.txt"))
             .WriteTo.Async(c => c.Console())
             .CreateLogger();
-
         try
         {
             Log.Information("Starting Wajba.HttpApi.Host.");
