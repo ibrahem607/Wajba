@@ -18,7 +18,6 @@ public class ThemeController : WajbaController
         try
         {
             await _themesAppservice.CreateAsync(input);
-
             return Ok(new ApiResponse<object>
             {
                 Success = true,
@@ -73,7 +72,7 @@ public class ThemeController : WajbaController
                 Data = themesDto
             });
         }
-        catch (EntityNotFoundException)
+        catch (EntityNotFoundException )
         {
             return NotFound(new ApiResponse<object>
             {
