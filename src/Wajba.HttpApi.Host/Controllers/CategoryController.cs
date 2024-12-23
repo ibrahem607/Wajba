@@ -108,7 +108,6 @@ public class CategoryController : WajbaController
 
     [HttpGet]
     public async Task<IActionResult> GetListAsync([FromQuery] GetCategoryInput input)
-
     {
         try
         {
