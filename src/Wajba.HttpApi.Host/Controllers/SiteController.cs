@@ -5,7 +5,7 @@ namespace Wajba.Controllers;
 
 [IgnoreAntiforgeryToken]
 
-public class SiteController :AbpController
+public class SiteController : AbpController
 {
     private readonly SitesAppservice _sitesAppservice;
     public SiteController(SitesAppservice sitesAppservice)
@@ -17,12 +17,12 @@ public class SiteController :AbpController
     {
         try
         {
-            await _sitesAppservice.CreateAsync(input);
+            SiteDto siteDto = await _sitesAppservice.CreateAsync(input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
                 Message = "Site created successfully.",
-                Data = null
+                Data = siteDto
             });
         }
         catch (Exception ex)
@@ -40,7 +40,7 @@ public class SiteController :AbpController
     {
         try
         {
-            var updatedsite = await _sitesAppservice.UpdateAsync(id, input);
+            SiteDto updatedsite = await _sitesAppservice.UpdateAsync(id, input);
             return Ok(new ApiResponse<object>
             {
                 Success = true,
@@ -146,5 +146,4 @@ public class SiteController :AbpController
             });
         }
     }
-
 }

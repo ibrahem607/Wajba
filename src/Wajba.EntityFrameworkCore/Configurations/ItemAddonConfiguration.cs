@@ -1,7 +1,7 @@
 ﻿global using Wajba.Models.ItemAddonDomain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Volo.Abp.EntityFrameworkCore.Modeling;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Wajba.Configurations;
 
