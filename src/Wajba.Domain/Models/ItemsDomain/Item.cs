@@ -28,7 +28,6 @@ public class Item : FullAuditedEntity<int>
     public virtual ICollection<OfferItem> OfferItems { get; set; } = new HashSet<OfferItem>();
     public Item()
     {
-        
+
     }
-    
 }
