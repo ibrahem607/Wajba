@@ -1,21 +1,16 @@
 ﻿global using Wajba.Dtos.ItemsDtos;
 global using Wajba.Models.Items;
-using AutoMapper.Internal.Mappers;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-using Wajba.Models.CategoriesDomain;
-using Wajba.Services.ImageService;
+using Volo.Abp.Application.Dtos;
 
 namespace Wajba.ItemServices;
 
-public class ItemAppServices<T> : ApplicationService  
+public class ItemAppServices : ApplicationService
 {
     private readonly IRepository<Item, int> _repository;
     private readonly IRepository<Category, int> _repository1;
     private readonly IImageService _imageService;
 
-    public ItemAppServices(IRepository<Item, int> repository,IRepository<Category ,int> repository1, IImageService imageService)
+    public ItemAppServices(IRepository<Item, int> repository, IRepository<Category, int> repository1, IImageService imageService)
     {
         _repository = repository;
         _repository1 = repository1;
@@ -27,7 +22,7 @@ public class ItemAppServices<T> : ApplicationService
         if (input.ImageUrl != null)
             imageUrl = await _imageService.UploadAsync(input.ImageUrl);
         Category category = await _repository1.FindAsync(input.CategoryId);
-        if(category==null)
+        if (category == null)
             return null;
 
         Item item = new Item()
@@ -46,5 +41,20 @@ public class ItemAppServices<T> : ApplicationService
         };
         await _repository.InsertAsync(item);
         return ObjectMapper.Map<Item, ItemDto>(item);
+    }
+    public async Task<PagedResultDto<ItemDto>> GetAll(GetItemInput input)
+    {
+        var queryable = await _repository.GetQueryableAsync();
+        queryable = queryable.WhereIf(
+            !string.IsNullOrEmpty(input.name), p => p.Name.ToLower() == input.name.ToLower())
+            .WhereIf(input.BranchId.HasValue, p => p.ItemBranches.Any(l => l.BranchId == input.BranchId.Value));
+        int totalCount = await AsyncExecuter.CountAsync(queryable);
+        List<Item> items = await AsyncExecuter.ToListAsync(queryable
+            .OrderBy(input.Sorting ?? nameof(Item.Name))
+            .PageBy(input.SkipCount, input.MaxResultCount));
+        return new PagedResultDto<ItemDto>(
+totalCount,
+ObjectMapper.Map<List<Item>, List<ItemDto>>(items)
+);
     }
 }

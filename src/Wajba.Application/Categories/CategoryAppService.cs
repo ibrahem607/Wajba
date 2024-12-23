@@ -17,11 +17,15 @@ public class CategoryAppService:ApplicationService
 {
     private readonly IRepository<Category, int> _categoryRepository;
     private readonly IImageService _imageService;
+    private readonly IRepository<Item, int> _itemRepo;
 
-    public CategoryAppService(IRepository<Category, int> categoryRepository, IImageService imageService)
+    public CategoryAppService(IRepository<Category, int> categoryRepository,
+        IImageService imageService,
+        IRepository<Item, int> itemRepo)
     {
         _categoryRepository = categoryRepository;
         _imageService = imageService;
+        _itemRepo = itemRepo;
     }
 
     public async Task<CategoryDto> CreateAsync(CreateUpdateCategoryDto input)
@@ -75,6 +79,34 @@ public class CategoryAppService:ApplicationService
             ObjectMapper.Map<List<Category>, List<CategoryDto>>(items)
         );
     }
+
+    public async Task<IReadOnlyList<CategoryDto>> Getallbybranchid(int branchid)
+    {
+        var queryable = await _categoryRepository.WithDetailsAsync(p => p.Items);
+        var filteredCategories = queryable
+    .Where(c => c.Items.Any(i => i.ItemBranches.Any(ib => ib.BranchId == branchid)))
+    .ToList();
+        ICollection<CategoryDto> categoryDtos = new List<CategoryDto>();
+        foreach (var category in filteredCategories)
+        {
+            var categoryDto = new CategoryDto
+            {
+                Id = category.Id,
+                name = category.Name,
+                ItemsDtos = category.Items
+           .Where(i => i.ItemBranches.Any(ib => ib.BranchId == branchid))
+           .Select(i => new ItemDto
+           {
+               Id = i.Id,
+               Name = i.Name,
+           })
+           .ToList()
+            };
+            categoryDtos.Add(categoryDto);
+        }
+        return (IReadOnlyList<CategoryDto>)categoryDtos;
+    }
+
     public async Task DeleteAsync(int id)
     {
         await _categoryRepository.DeleteAsync(id);
