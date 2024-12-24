@@ -131,7 +131,29 @@ public class CategoryController : WajbaController
             });
         }
     }
-
+    [HttpGet("getallcategorieswithitemsbybranchId")]
+    public async Task<ActionResult<IReadOnlyList<CategoryDto>>> Getallitemsbybranchid(int branchid)
+    {
+        try
+        {
+            var cats = await _categoryAppService.Getallbybranchid(branchid);
+            return Ok(new ApiResponse<IReadOnlyList<CategoryDto>>
+            {
+                Message = "Categories retrieved successfully.",
+                Success = true,
+                Data = cats
+            });
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                Message = $"Error retrieving categories: {ex.Message}",
+                Data = null
+            });
+        }
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
