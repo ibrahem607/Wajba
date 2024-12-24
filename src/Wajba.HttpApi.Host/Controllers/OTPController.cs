@@ -1,45 +1,154 @@
 ﻿global using Wajba.Dtos.OTPContract;
+global using Wajba.OTPService;
 
 namespace Wajba.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class OTPController : AbpController, IOTPAppService
+public class OTPController : WajbaController
 {
-    private readonly IOTPAppService _otpAppService;
+    private readonly OTPAppService _oTPAppService;
 
-    public OTPController(IOTPAppService otpAppService)
+    public OTPController(OTPAppService oTPAppService)
     {
-        _otpAppService = otpAppService;
+        _oTPAppService = oTPAppService;
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync([FromForm] CreateUpdateOTPDto input)
+    {
+        try
+        {
+            await _oTPAppService.CreateAsync(input);
+            return Ok(new ApiResponse<object>
+            {
+                Success = true,
+                Message = "OTP created successfully.",
+                Data = null
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                Message = $"Error creating otp: {ex.Message}",
+                Data = null
+            });
+        }
     }
 
-    [HttpGet]
-    public Task<PagedResultDto<OTPDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateUpdateOTPDto input)
     {
-        return _otpAppService.GetListAsync(input);
+        try
+        {
+            OTPDto oTPDto = await _oTPAppService.UpdateAsync(id, input);
+            return Ok(new ApiResponse<OTPDto>
+            {
+                Success = true,
+                Message = "Otp updated successfully.",
+                Data = oTPDto
+            });
+        }
+        catch (EntityNotFoundException)
+        {
+            return NotFound(new ApiResponse<object>
+            {
+                Success = false,
+                Message = "Otp not found.",
+                Data = null
+            });
+        }
+
     }
 
     [HttpGet("{id}")]
-    public Task<OTPDto> GetAsync(int id)
+    public async Task<IActionResult> GetByIdAsync(int id)
     {
-        return _otpAppService.GetAsync(id);
+        try
+        {
+            OTPDto oTPDto = await _oTPAppService.GetByIdAsync(id);
+            return Ok(new ApiResponse<OTPDto>
+            {
+                Success = true,
+                Message = "OTp retrieved successfully.",
+                Data = oTPDto
+            });
+        }
+        catch (EntityNotFoundException)
+        {
+            return NotFound(new ApiResponse<object>
+            {
+                Success = false,
+                Message = "Otp not found.",
+                Data = null
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                Message = $"Error retrieving otp: {ex.Message}",
+                Data = null
+            });
+        }
     }
 
-    [HttpPost]
-    public Task<OTPDto> CreateAsync(CreateUpdateOTPDto input)
+    [HttpGet]
+    public async Task<IActionResult> GetListAsync([FromQuery] PagedAndSortedResultRequestDto input)
     {
-        return _otpAppService.CreateAsync(input);
+        try
+        {
+            var dto = await _oTPAppService.GetListAsync(input);
+            return Ok(new ApiResponse<PagedResultDto<OTPDto>>
+            {
+                Success = true,
+                Message = "Otps retrieved successfully.",
+                Data = dto
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                Message = $"Error retrieving otps: {ex.Message}",
+                Data = null
+            });
+        }
     }
-
-    [HttpPut("{id}")]
-    public Task<OTPDto> UpdateAsync(int id, CreateUpdateOTPDto input)
-    {
-        return _otpAppService.UpdateAsync(id, input);
-    }
-
     [HttpDelete("{id}")]
-    public Task DeleteAsync(int id)
+    public async Task<IActionResult> DeleteAsync(int id)
     {
-        return _otpAppService.DeleteAsync(id);
+        try
+        {
+            await _oTPAppService.DeleteAsync(id);
+            return Ok(new ApiResponse<object>
+            {
+                Success = true,
+                Message = "Otp deleted successfully.",
+                Data = null
+            });
+        }
+        catch (EntityNotFoundException)
+        {
+            return NotFound(new ApiResponse<object>
+            {
+                Success = false,
+                Message = "Otp not found.",
+                Data = null
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new ApiResponse<object>
+            {
+                Success = false,
+                Message = $"Error deleting otp: {ex.Message}",
+                Data = null
+            });
+        }
     }
 }

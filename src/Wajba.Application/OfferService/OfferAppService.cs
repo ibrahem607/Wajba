@@ -1,17 +1,5 @@
-﻿using AutoMapper.Internal.Mappers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
-using Volo.Abp.Domain.Repositories;
-
-using Wajba.Models.OfferDomain;
-
-using Wajba.OffersContract;
-using Wajba.Services.ImageService;
+﻿global using Wajba.Models.OfferDomain;
+global using Wajba.OffersContract;
 
 namespace Wajba.OfferService
 {

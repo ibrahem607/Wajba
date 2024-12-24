@@ -27,7 +27,7 @@ public class BranchAppService : ApplicationService
             Latitude = input.Latitude,
             Status = input.Status
         };
-        Branch branch1 = await _repository.InsertAsync(branch);
+        Branch branch1 = await _repository.InsertAsync(branch,true);
         return ObjectMapper.Map<Branch, BranchDto>(branch1);
     }
     public async Task<BranchDto> UpdateAsync(int id, CreateUpdateBranchDto input)
@@ -44,7 +44,7 @@ public class BranchAppService : ApplicationService
         branch.State = input.State;
         branch.ZipCode = input.ZipCode;
         branch.LastModificationTime = DateTime.UtcNow;
-        Branch branch1 = await _repository.UpdateAsync(branch);
+        Branch branch1 = await _repository.UpdateAsync(branch,true);
         return ObjectMapper.Map<Branch, BranchDto>(branch1);
     }
     public async Task<PagedResultDto<BranchDto>> GetListAsync(GetBranchInput input)
