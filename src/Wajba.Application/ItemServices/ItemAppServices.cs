@@ -51,8 +51,17 @@ public class ItemAppServices : ApplicationService
             IsDeleted = false,
             ItemBranches = branches.Select(branch => new ItemBranch { Branch = branch }).ToList()
         };
-        await _repository.InsertAsync(item);
+        await _repository.InsertAsync(item,true);
         return ObjectMapper.Map<Item, ItemDto>(item);
+    }
+    public async Task UpdateItemImage(UpdateItemImageDTO updateItemDTO)
+    {
+        Item item = await _repository.FindAsync(updateItemDTO.Id);
+        if (item == null) return;
+        if (updateItemDTO.newImage != null)
+            item.ImageUrl = await _imageService.UploadAsync(updateItemDTO.newImage);
+        item.LastModificationTime = DateTime.UtcNow;
+        await _repository.UpdateAsync(item, true);
     }
     public async Task<PagedResultDto<ItemDto>> GetAll(GetItemInput input)
     {
