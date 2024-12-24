@@ -1,6 +1,5 @@
 ﻿global using Wajba.Dtos.BranchContract;
-using Wajba.BranchService;
-using Wajba.Categories;
+global using Wajba.BranchService;
 
 namespace Wajba.Controllers;
 

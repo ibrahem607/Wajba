@@ -11,7 +11,6 @@ namespace Wajba.Controllers;
 public class CategoryController : WajbaController
 {
     private readonly CategoryAppService _categoryAppService;
-
     public CategoryController(CategoryAppService categoryAppService)
     {
         _categoryAppService = categoryAppService;
@@ -42,8 +41,6 @@ public class CategoryController : WajbaController
             });
         }
     }
-
-
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateUpdateCategoryDto input)
     {
@@ -77,7 +74,6 @@ public class CategoryController : WajbaController
         {
             // Call the service to get the category by ID
             var category = await _categoryAppService.GetByIdAsync(id);
-
             return Ok(new ApiResponse<CategoryDto>
             {
                 Success = true,
@@ -104,8 +100,6 @@ public class CategoryController : WajbaController
             });
         }
     }
-
-
     [HttpGet]
     public async Task<IActionResult> GetListAsync([FromQuery] GetCategoryInput input)
     {
@@ -113,7 +107,6 @@ public class CategoryController : WajbaController
         {
             // Call the service to get the list of categories
             var categories = await _categoryAppService.GetListAsync(input);
-
             return Ok(new ApiResponse<PagedResultDto<CategoryDto>>
             {
                 Success = true,
@@ -144,7 +137,7 @@ public class CategoryController : WajbaController
                 Data = cats
             });
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return BadRequest(new ApiResponse<object>
             {
@@ -160,9 +153,7 @@ public class CategoryController : WajbaController
     {
         try
         {
-            // Call the service to delete the category
             await _categoryAppService.DeleteAsync(id);
-
             return Ok(new ApiResponse<object>
             {
                 Success = true,

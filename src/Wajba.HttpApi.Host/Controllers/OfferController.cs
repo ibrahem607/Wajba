@@ -19,7 +19,7 @@ public class OfferController : AbpController
     {
         try
         {
-            var offer = await _offerAppService.CreateAsync(input);
+            OfferDto offer = await _offerAppService.CreateAsync(input);
             return Ok(new ApiResponse<OfferDto>
             {
                 Success = true,
