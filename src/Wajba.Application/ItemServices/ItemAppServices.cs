@@ -49,7 +49,7 @@ public class ItemAppServices : ApplicationService
             Note = input.Note,
             Status = (Enums.Status)input.status,
             IsDeleted = false,
-            ItemBranches = branches.Select(p => new ItemBranch { Branch = p }).ToList()
+            ItemBranches = branches.Select(branch => new ItemBranch { Branch = branch }).ToList()
         };
         await _repository.InsertAsync(item);
         return ObjectMapper.Map<Item, ItemDto>(item);
@@ -68,5 +68,35 @@ public class ItemAppServices : ApplicationService
 totalCount,
 ObjectMapper.Map<List<Item>, List<ItemDto>>(items)
 );
+    }
+    public async Task<ItemDto> UpdateAsync(int id, CreateItemDto input)
+    {
+        Category category = await _repository1.FindAsync(input.CategoryId);
+        if (category == null)
+            return null;
+
+        Item item = await _repository.GetAsync(id);
+        if (item == null)
+            return null;
+        if (input.ImageUrl != null)
+            item.ImageUrl = await _imageService.UploadAsync(input.ImageUrl);
+        item.Name = input.Name;
+        item.Description = input.Description;
+        item.Status = (Enums.Status)input.status;
+        item.Note = input.Note;
+        item.CategoryId = input.CategoryId;
+        item.IsFeatured = input.IsFeatured;
+        item.ItemType = (Enums.ItemType)input.ItemType;
+        item.Price=input.Price;
+        item.TaxValue=input.TaxValue;
+      
+        item.LastModificationTime = DateTime.UtcNow;
+        Item item1 = await _repository.UpdateAsync(item, true);
+        return ObjectMapper.Map<Item, ItemDto>(item1);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        await _repository.DeleteAsync(id);
     }
 }

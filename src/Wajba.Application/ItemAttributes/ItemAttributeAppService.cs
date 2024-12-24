@@ -1,5 +1,4 @@
 ﻿global using Wajba.Models.ItemAttributeDomain;
-global using Wajba.Dtos.ItemAttributes;
 
 namespace Wajba.ItemAttributes;
 
