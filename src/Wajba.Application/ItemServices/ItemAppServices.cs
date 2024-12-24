@@ -7,12 +7,17 @@ public class ItemAppServices : ApplicationService
 {
     private readonly IRepository<Item, int> _repository;
     private readonly IRepository<Category, int> _repository1;
+    private readonly IRepository<Branch, int> _repository2;
     private readonly IImageService _imageService;
 
-    public ItemAppServices(IRepository<Item, int> repository, IRepository<Category, int> repository1, IImageService imageService)
+    public ItemAppServices(IRepository<Item, int> repository, 
+        IRepository<Category, int> repository1, 
+        IRepository<Branch,int> repository2,
+        IImageService imageService)
     {
         _repository = repository;
         _repository1 = repository1;
+       _repository2 = repository2;
         _imageService = imageService;
     }
     public async Task<ItemDto> CreateAsync(CreateItemDto input)
@@ -23,7 +28,14 @@ public class ItemAppServices : ApplicationService
         Category category = await _repository1.FindAsync(input.CategoryId);
         if (category == null)
             return null;
-
+        IList<Branch> branches = new List<Branch>();
+        foreach(var i in input.BranchIds)
+        {
+            Branch branch = await _repository2.FindAsync(i);
+            if(branch==null)
+                return null;
+            branches.Add(branch);
+        }
         Item item = new Item()
         {
             Name = input.Name,
@@ -37,6 +49,7 @@ public class ItemAppServices : ApplicationService
             Note = input.Note,
             Status = (Enums.Status)input.status,
             IsDeleted = false,
+            ItemBranches = branches.Select(p => new ItemBranch { Branch = p }).ToList()
         };
         await _repository.InsertAsync(item);
         return ObjectMapper.Map<Item, ItemDto>(item);
