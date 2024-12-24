@@ -41,7 +41,7 @@ public class ItemController : WajbaController
         try
         {
             var updatedcategory = await _itemAppServices.UpdateAsync(id, input);
-            return Ok(new ApiResponse<CategoryDto>
+            return Ok(new ApiResponse<ItemDto>
             {
                 Success = true,
                 Message = "Category updated successfully.",
