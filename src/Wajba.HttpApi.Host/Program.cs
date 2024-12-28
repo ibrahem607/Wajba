@@ -54,5 +54,6 @@ public class Program
         {
             Log.CloseAndFlush();
         }
+        Console.WriteLine("hello");
     }
 }
