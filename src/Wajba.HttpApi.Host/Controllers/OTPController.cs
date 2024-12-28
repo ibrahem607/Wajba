@@ -37,7 +37,6 @@ public class OTPController : WajbaController
         }
     }
 
-
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromForm] CreateUpdateOTPDto input)
     {

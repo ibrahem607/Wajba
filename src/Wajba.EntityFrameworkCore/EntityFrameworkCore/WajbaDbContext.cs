@@ -77,6 +77,7 @@ public class WajbaDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
+       
 
         builder.ApplyConfigurationsFromAssembly(typeof(WajbaDbContext).Assembly);
     }
