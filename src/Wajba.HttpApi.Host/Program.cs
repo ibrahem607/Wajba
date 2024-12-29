@@ -52,11 +52,12 @@ public class Program
         }
         finally
         {
-            Log.CloseAndFlush();
+            Log.CloseAndFlush();  
         }
 
 
 
 
+        
     }
 }
