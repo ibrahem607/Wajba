@@ -105,12 +105,11 @@ public class CategoryController : WajbaController
     {
         try
         {
-            // Call the service to get the list of categories
             var categories = await _categoryAppService.GetListAsync(input);
             return Ok(new ApiResponse<PagedResultDto<CategoryDto>>
             {
                 Success = true,
-                Message = "Categories retrieved successfully done.",
+                Message = "Categories retrieved successfully don   e.",
                 Data = categories
             });
         }
