@@ -110,7 +110,7 @@ public class CategoryController : WajbaController
             return Ok(new ApiResponse<PagedResultDto<CategoryDto>>
             {
                 Success = true,
-                Message = "Categories retrieved successfully.",
+                Message = "Categories retrieved successfully done.",
                 Data = categories
             });
         }
